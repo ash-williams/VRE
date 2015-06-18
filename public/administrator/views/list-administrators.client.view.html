@@ -1,0 +1,11 @@
+<section data-ng-controller="AdministratorsController" data-ng-init="find()">
+	<h1>Administrators</h1>
+	<ul>
+		<li data-ng-repeat="administrator in administrators">
+			<a data-ng-href="#!/administrators/{{administrator._id}}" data-ng-bind="administrator.account.fullName"></a>
+		</li>
+	</ul>
+	<div data-ng-hide="!administrators || administrators.length ">
+		No administrators yet, why don't you <a href="/#!/administrators/create">create one</a>?
+	</div>
+</section>

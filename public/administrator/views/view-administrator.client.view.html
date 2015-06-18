@@ -1,0 +1,16 @@
+<section data-ng-controller="AdministratorsController" data-ng-init="findOne()">
+	<h1 data-ng-bind="administrator.fullName">,/h1>
+	<div data-ng-show="authentication.user.accountType === 'Administrator'">
+		<a href="/#!/administrators/{{administrator._id}}/edit">Edit</a>
+		<a href "#" data-ng-click="delete();">Delete</a>
+	</div>
+	<h2 data-ng-bind="administrator.account.fullName"></h2>
+	<p>Email: <span data-ng-bind="administrator.account.email"></span></p>
+	<p>Username: <span data-ng-bind="administrator.account.username"></span></p>
+	<p>Username: <span data-ng-bind="administrator.account.username"></span></p>
+	<p>Valid Account: <span data-ng-bind="administrator.valid"></span></p>
+	<em>
+		<p>Created On: <span data-ng-bind="administrator.created"></span></p>
+		<p>Created By: <span data-ng-bind="administrator.creator"></span></p>
+	</em>
+</section>

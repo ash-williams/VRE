@@ -1,0 +1,28 @@
+<section data-ng-contoller="AdministratorsController" data-ng-init="findOne()">
+	<h1>Edit Administrator</h1>
+	<form data-ng-submit="update()" novalidate>
+		<div>
+			<label for="valid">Valid Account</label>
+			<div>
+				<div class="radio">
+            		<label>
+		                <input type="radio" name="true" value="true" data-ng-model="administrator.valid">
+		                Valid
+		            </label>
+		        </div>
+	        	<div class="radio">
+            		<label>
+		                <input type="radio" name="true" value="false" data-ng-model="administrator.valid">
+		                Invalid
+		            </label>
+		        </div>
+		    </div>
+		    <div>
+		    	<input type="submit" value="Update">
+		    </div>
+		    <div data-ng-show="error">
+		    	<strong data-ng-bind="error"></strong>
+		    </div>
+		</div>
+	</form>
+</section>

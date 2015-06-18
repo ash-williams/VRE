@@ -1,0 +1,47 @@
+<section data-ng-controller="AdministratorsController">
+	<h1>New Administrator</h1>
+	<form data-ng-submit="create()" novalidate>
+		<div>
+			<label for="title">Title</label>
+			<div>
+				<input type="text" data-ng-model="title" id="title" required>
+			</div>
+		</div>
+		<div>
+			<label for="firstName">First Name</label>
+			<div>
+				<input type="text" data-ng-model="firstName" id="firstName" required>
+			</div>
+		</div>
+		<div>
+			<label for="lastName">Last Name</label>
+			<div>
+				<input type="text" data-ng-model="lastName" id="lastName" required>
+			</div>
+		</div>
+		<div>
+			<label for="email">Email</label>
+			<div>
+				<input type="text" data-ng-model="email" id="email" required>
+			</div>
+		</div>
+		<div>
+			<label for="username">Username</label>
+			<div>
+				<input type="text" data-ng-model="username" id="username" required>
+			</div>
+		</div>
+		<div>
+			<label for="password">Password</label>
+			<div>
+				<input type="password" data-ng-model="title" id="password" required>
+			</div>
+		</div>
+		<div>
+			<input type="submit">
+		</div>
+		<div data-ng-show="error">
+			<strong data-ng-bind="error"></strong>
+		</div>
+	</form>
+</section>

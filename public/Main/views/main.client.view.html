@@ -1,0 +1,15 @@
+<section ng-controller="MainController">
+	<div data-ng-show="!authentication.user">
+		<a href="/signup">Admin Sign Up</a>
+		<a href="/signin">Log In</a>
+	</div>
+	<div data-ng-show="authentication.user.accountType === 'Administrator'">
+		<div data-ng-include="'/administrator/views/default-administrator.client.view.html'"></div>
+	</div>
+	<div data-ng-show="authentication.user.accountType === 'Clinician'">
+		<div data-ng-include="'/clinician/views/default-clinician.client.view.html'"></div>
+	</div>
+	<div data-ng-show="authentication.user.accountType === 'Patient'">
+		<div data-ng-include="'/patient/views/default-patient.client.view.html'"></div>
+	</div>
+</section>

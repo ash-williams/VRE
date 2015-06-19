@@ -1,6 +1,6 @@
 var mainApplicationModuleName = 'vre';
 
-var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'Main', 'users', 'administrators']);
+var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'Main', 'users']);
 
 mainApplicationModule.config(['$locationProvider',
 		function($locationProvider){

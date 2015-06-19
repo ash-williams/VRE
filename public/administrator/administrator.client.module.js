@@ -1,0 +1,1 @@
+angular.module('administrator', ['admin_profile','account_management','repository_management']);

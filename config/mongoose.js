@@ -6,8 +6,8 @@ module.exports = function(){
 
 	require('../app/models/account.server.model');
 	require('../app/models/administrator.server.model');
-	//require('../app/models/patient.server.model');
-	//require('../app/models/clinician.server.model');
+	require('../app/models/patient.server.model');
+	require('../app/models/clinician.server.model');
 
 	return db;
 }

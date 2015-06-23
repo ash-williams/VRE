@@ -1,1 +1,1 @@
-angular.module('admin_profile', []);
+angular.module('adminProfile', []);

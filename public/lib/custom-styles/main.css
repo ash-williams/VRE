@@ -1,3 +1,45 @@
 .body-content {
 	margin-top: 60px;
 }
+
+.top_bar{
+	/*border: 1px solid #000;*/
+}
+
+.title{
+}
+
+.title_right{
+	margin-top: 25px;
+}
+
+.main_content{
+	clear: both;
+}
+
+.space_top{
+	margin-top: 5px;
+}
+
+.pad{
+	padding: 10px;
+}
+
+.margin{
+	margin: 10px;
+}
+
+.tab-border{
+	border-top: none;
+	border-top-right-radius: 0px;
+	border-top-left-radius: 0px;
+}
+
+/* Forms validation */
+.ng-invalid.ng-dirty{
+	border-color: #fa787e;
+}
+
+.ng-valid.ng-dirty{
+	border-color: #78fa89;
+}

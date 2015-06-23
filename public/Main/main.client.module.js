@@ -1,1 +1,1 @@
-angular.module('Main', ['administrator', 'clinician', 'patient']);
+angular.module('main', ['administrator', 'clinician', 'patient']);

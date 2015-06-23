@@ -1,0 +1,93 @@
+<div data-ng-controller="AccountsController as accCtrl" class="pad">
+	<h4>Create new {{accCtrl.account.accountType}} account</h4>
+
+	<div ng-show="accCtrl.error" class="alert alert-danger" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		{{accCtrl.error}}
+	</div>
+
+	<div ng-show="accCtrl.success" class="alert alert-success" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		{{accCtrl.success}}
+	</div>
+
+	<form name="frmcreateacc" data-ng-submit="frmcreateacc.$valid && accCtrl.create()" class="form-horizontal" novalidate>
+		<div class="form-group">
+			<label for="accType" class="col-sm-2 control-label">Account Type</label>
+			<div class="col-sm-10">
+				<select id="accType" class="form-control" data-ng-model="accCtrl.account.accountType" required>
+					<option value="Patient" selected>Patient</option>
+					<option value="Clinician">Clinician</option>
+					<option value="Administrator">Administrator</option>
+				</select>
+			</div>
+		</div>
+			<div data-ng-show="accCtrl.account.accountType">
+			<!-- Generic to all accounts -->
+			<div class="form-group">
+				<label for="title" class="col-sm-2 control-label">Title</label>
+				<div class="col-sm-10">
+					<select id="title" class="form-control" data-ng-model="accCtrl.account.title" required>
+						<option value="Mr" selected>Mr</option>
+						<option value="Mrs">Mrs</option>
+						<option value="Miss">Miss</option>
+						<option value="Dr">Dr</option>
+						<option value="Rev">Rev</option>
+						<option value="Ms">Ms</option>
+						<option value="Other">Other</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="firstname" class="col-sm-2 control-label">First Name</label>
+				<div class="col-sm-10">
+					<input type="text" id="firstname" class="form-control" data-ng-model="accCtrl.account.firstName" required>
+				</div>
+			</div>
+			<div class="form-group" >
+				<label for="lastname" class="col-sm-2 control-label">Last Name</label>
+				<div class="col-sm-10">
+					<input type="text" id="lastname" class="form-control" data-ng-model="accCtrl.account.lastName" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="email" class="col-sm-2 control-label">Email</label>
+				<div class="col-sm-10">
+					<input type="email" id="email" class="form-control" data-ng-model="accCtrl.account.email" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="username" class="col-sm-2 control-label">Username</label>
+				<div class="col-sm-10">
+					<input type="text" id="username" class="form-control" data-ng-model="accCtrl.account.username" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password" class="col-sm-2 control-label">Password</label>
+				<div class="col-sm-10">
+					<input type="password" id="password" class="form-control" data-ng-model="accCtrl.account.password" required>
+				</div>
+			</div>
+		</div>
+		<div data-ng-show="accCtrl.account.accountType === 'Patient'">
+			<!-- Currently no patient specific info -->
+		</div>
+		<div data-ng-show="accCtrl.account.accountType === 'Clinician'">
+			<div class="form-group">
+				<label for="specialty" class="col-sm-2 control-label">Specialty</label>
+				<div class="col-sm-10">
+					<input type="text" id="specialty" class="form-control" data-ng-model="accCtrl.account.specialty">
+				</div>
+			</div>
+		</div>
+		<div data-ng-show="accCtrl.account.accountType === 'Administrator'">
+		<!-- Currently no admin specific info -->
+		</div>
+		<div ng-show="accCtrl.account.accountType">
+			<input type="submit" value="Create Account" class="btn btn-primary">
+		</div>
+		<div data-ng-show="error">
+			<strong data-ng-bind="error"></strong>
+		</div>
+	</form>
+</div>

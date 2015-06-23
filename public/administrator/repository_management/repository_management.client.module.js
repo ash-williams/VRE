@@ -1,1 +1,1 @@
-angular.module('repository_management', []);
+angular.module('repositoryManagement', []);

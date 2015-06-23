@@ -1,6 +1,8 @@
+'use strict';
+
 var mainApplicationModuleName = 'vre';
 
-var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'Main', 'users']);
+var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'main', 'users']);
 
 mainApplicationModule.config(['$locationProvider',
 		function($locationProvider){
@@ -8,9 +10,9 @@ mainApplicationModule.config(['$locationProvider',
 		}
 ]);
 
-if(window.location.hash === '#_=_'){
-	window.location.hash = '#!';
-}
+// if(window.location.hash === '#_=_'){
+// 	window.location.hash = '#!';
+// }
 
 angular.element(document).ready(function(){
 	angular.bootstrap(document, [mainApplicationModuleName]);

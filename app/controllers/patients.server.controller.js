@@ -1,4 +1,4 @@
-var Administrator = require('mongoose').model('Administrator');
+var Patient = require('mongoose').model('Patient');
 
 var getErrorMessage = function(err){
 	if(err.errors){
@@ -13,79 +13,79 @@ var getErrorMessage = function(err){
 };
 
 exports.create = function(req, res){
-	var admin = new Administrator(req.body);
-	admin.creator = req.user;
+	var pat = new Patient(req.body);
+	pat.creator = req.user;
 	
-	admin.save(function(err){
+	pat.save(function(err){
 		if(err){
 			return next(err);
 		} else{
-			res.json(admin);
+			res.json(pat);
 		}
 	});
 };
 
 exports.list = function(req, res){
-	Administrator.find()
+	Patient.find()
 	.sort('-created').populate('account','title firstName lastName fullName email username')
-	.exec(function(err, administrators){
+	.exec(function(err, patients){
 		if(err){
 			return res.status(400).send({
 				message: getErrorMessage(err)
 			});
 		}else{
-			res.json(administrators);
+			res.json(patients);
 		}
 	});
 };
 
-exports.administratorByID = function(req, res, next, id){
-	Administrator.findById(id)
+exports.patientById = function(req, res, next, id){
+	Patient.findById(id)
 	.populate('account', 'title firstName lastName fullName email username')
-	.exec(function(err, administrator){
+	.exec(function(err, patient){
 		if(err){
 			return next(err);
 		}
 
-		if(!administrator){
-			return next(new Error('Failed to load administrator ' + id));
+		if(!patient){
+			return next(new Error('Failed to load patient ' + id));
 
-			req.administrator = administrator;
+			req.patient = patient;
 			next();
 		}
 	});
 };
 
 exports.read = function(req, res){
-	res.json(req.administrator);
+	res.json(req.patient);
 };
 
 exports.update = function(req, res){
-	var administrator = req.administrator;
+	var patient = req.patient;
 
-	administrator.valid = req.body.valid;
+	patient.valid = req.body.valid;
 
-	administrator.save(function(err){
+	patient.save(function(err){
 		if(err){
 			return res.status(400).send({
 				message: getErrorMessage(err)
 			});
 		}else{
-			res.json(administrator);
+			res.json(patient);
 		}
 	});
 };
 
 exports.delete = function(req, res){
-	var administrator = req.administrator;
+	var patient = req.patient;
 
-	administrator.remove(function(err){
+	patient.remove(function(err){
 		if(err){
 			return res.status(400).send({
 				message: getErrorMessage(err)
 			});
 		}else{
-			res.json(administrator);
+			res.json(patient);
 		}
 	});
 };

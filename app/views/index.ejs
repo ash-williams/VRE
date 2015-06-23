@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="vre">
+<html>
 	<head>
 		<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +9,10 @@
 
 		<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
 		<link rel="stylesheet" href="/lib/custom-styles/main.css" />
+		<link rel="stylesheet" href="/lib/custom-styles/admin.css" />
+
 	</head>
-	<body ng-app="vre">		
+	<body>		
 		
 		<section ng-view></section>
 		
@@ -24,17 +26,20 @@
 		<script type="text/javascript" src="/lib/angular/angular.js"></script>
 		<script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
 		<script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
+		<script type="text/javascript" src="/lib/angular-bootstrap/ui-bootstrap.js"></script>
+		<script type="text/javascript" src="/lib/custom-js/modal.js"></script>
 		<!-- endinject -->
 
 		<!-- core module -->
-		<script type="text/javascript" src="/Main/main.client.module.js"></script>
-		<script type="text/javascript" src="/Main/controllers/main.client.controller.js"></script>
-		<script type="text/javascript" src="/Main/config/main.client.routes.js"></script>
+		<script type="text/javascript" src="/main/main.client.module.js"></script>
+		<script type="text/javascript" src="/main/controllers/main.client.controller.js"></script>
+		<script type="text/javascript" src="/main/config/main.client.routes.js"></script>
 
 		<!-- administrators module -->
 		<script type="text/javascript" src="/administrator/administrator.client.module.js"></script>
 		<script type="text/javascript" src="/administrator/controllers/adminPanel.client.controller.js"></script>
 		<script type="text/javascript" src="/administrator/directives/administrator.client.directives.js"></script>
+
 		<!--
 		<script type="text/javascript" src="/administrator/controllers/administrators.client.controller.js"></script>
 		<script type="text/javascript" src="/administrator/services/administrators.client.service.js"></script>
@@ -45,6 +50,13 @@
 				<script type="text/javascript" src="/administrator/admin_profile/admin_profile.client.module.js"></script>
 				<!-- account_management -->
 				<script type="text/javascript" src="/administrator/account_management/account_management.client.module.js"></script>
+				<script type="text/javascript" src="/administrator/account_management/controllers/acc_man.client.controller.js"></script>
+				<script type="text/javascript" src="/administrator/account_management/controllers/accounts.client.controller.js"></script>
+				<script type="text/javascript" src="/administrator/account_management/directives/acc_man.client.directives.js"></script>
+				<script type="text/javascript" src="/administrator/account_management/services/accounts.client.service.js"></script>
+				<script type="text/javascript" src="/administrator/account_management/services/administrators.client.service.js"></script>
+				<script type="text/javascript" src="/administrator/account_management/services/clinicians.client.service.js"></script>
+				<script type="text/javascript" src="/administrator/account_management/services/patients.client.service.js"></script>
 				<!-- repository_management -->
 				<script type="text/javascript" src="/administrator/repository_management/repository_management.client.module.js"></script>
 		<!-- End of admin module -->

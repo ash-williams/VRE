@@ -21,11 +21,11 @@ module.exports = function(app){
 
 	app.get('/signout', accounts.signout);
 
-	app.route('/accounts')
+	app.route('/api/accounts')
 		.post(accounts.create)
 		.get(accounts.list);
 
-	app.route('/accounts/:accountId')
+	app.route('/api/accounts/:accountId')
 		.get(accounts.read)
 		.put(accounts.update)
 		.delete(accounts.delete);

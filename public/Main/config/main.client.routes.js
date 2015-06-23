@@ -1,8 +1,8 @@
-angular.module('Main').config(['$routeProvider',
+angular.module('main').config(['$routeProvider',
 	function($routeProvider){
 	$routeProvider
 	.when('/',{
-		templateUrl: 'Main/views/main.client.view.html'
+		templateUrl: 'main/views/main.client.view.html'
 	})
 	.otherwise({
 		redirectTo: '/'

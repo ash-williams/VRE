@@ -1,6 +1,7 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+	Schema = mongoose.Schema;
 
-var ClinicianSchema = new mongoose.Schema({
+var ClinicianSchema = new Schema({
 	specialty: {
 		type: String
 	},
@@ -8,9 +9,17 @@ var ClinicianSchema = new mongoose.Schema({
 		type: Schema.ObjectId,
 		ref: 'Account'
 	},
+	valid: {
+		type: Boolean,
+		default: true
+	},
 	created: {
 		type: Date,
 		default: Date.now
+	},
+	creator: {
+		type: Schema.ObjectId,
+		ref: 'Account'
 	}
 });
 

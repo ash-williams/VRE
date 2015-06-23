@@ -1,0 +1,72 @@
+<section class="container" data-ng-controller="AccountsController as accCtrl" data-ng-init="accCtrl.getClinicians()">
+	<h1>Clinicians</h1>
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<tr>
+				<th>Title</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Specialty</th>
+				<th>Email</th>
+				<th>Username</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr data-ng-repeat="clin in accCtrl.clinicians">
+				<td data-ng-bind="clin.account.title"></td>
+				<td data-ng-bind="clin.account.firstName"></td>
+				<td data-ng-bind="clin.account.lastName"></td>
+				<td data-ng-bind="clin.specialty"></td>
+				<td data-ng-bind="clin.account.email"></td>
+				<td data-ng-bind="clin.account.username"></td>
+				<td>
+					<button class="btn btn-link" ng-click="accCtrl.viewopen()">View</button>
+				</td>
+				<td>
+					<button class="btn btn-link" ng-click="accCtrl.editopen()">Edit</button>
+				</td>
+				<td>
+					<button class="btn btn-link" ng-click="accCtrl.delete()">Delete</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div data-ng-show="!accCtrl.clinicians">
+		No clinicians yet
+	</div>
+
+	<div modal="accCtrl.showViewModal" close="accCtrl.viewcancel()">		
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" ng-click="accCtrl.viewcancel()"><span aria-hidden="true">&times;</span></button>
+					<h4>View Account</h4>
+				</div>
+				<div class="modal-body">
+					<div viewacc></div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-success" ng-click="accCtrl.viewok()">Okay</button>
+				</div>
+			</div>
+		</div>	
+	</div>
+
+	<div modal="accCtrl.showEditModal" close="accCtrl.editcancel()">		
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" ng-click="accCtrl.editcancel()"><span aria-hidden="true">&times;</span></button>
+					<h4>Edit Account</h4>
+				</div>
+				<div class="modal-body">
+					<div editacc></div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-success" ng-click="accCtrl.editok()">Okay</button>
+				</div>
+			</div>
+		</div>	
+	</div>
+</section>

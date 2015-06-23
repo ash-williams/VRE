@@ -1,4 +1,4 @@
-var Administrator = require('mongoose').model('Administrator');
+var Clinician = require('mongoose').model('Clinician');
 
 var getErrorMessage = function(err){
 	if(err.errors){
@@ -13,79 +13,79 @@ var getErrorMessage = function(err){
 };
 
 exports.create = function(req, res){
-	var admin = new Administrator(req.body);
-	admin.creator = req.user;
+	var clin = new Clinician(req.body);
+	clin.creator = req.user;
 	
-	admin.save(function(err){
+	clin.save(function(err){
 		if(err){
 			return next(err);
 		} else{
-			res.json(admin);
+			res.json(clin);
 		}
 	});
 };
 
 exports.list = function(req, res){
-	Administrator.find()
+	Clinician.find()
 	.sort('-created').populate('account','title firstName lastName fullName email username')
-	.exec(function(err, administrators){
+	.exec(function(err, clinicians){
 		if(err){
 			return res.status(400).send({
 				message: getErrorMessage(err)
 			});
 		}else{
-			res.json(administrators);
+			res.json(clinicians);
 		}
 	});
 };
 
-exports.administratorByID = function(req, res, next, id){
-	Administrator.findById(id)
+exports.clinicianById = function(req, res, next, id){
+	Clinician.findById(id)
 	.populate('account', 'title firstName lastName fullName email username')
-	.exec(function(err, administrator){
+	.exec(function(err, clinician){
 		if(err){
 			return next(err);
 		}
 
-		if(!administrator){
-			return next(new Error('Failed to load administrator ' + id));
+		if(!clinician){
+			return next(new Error('Failed to load clinician ' + id));
 
-			req.administrator = administrator;
+			req.clinician = clinician;
 			next();
 		}
 	});
 };
 
 exports.read = function(req, res){
-	res.json(req.administrator);
+	res.json(req.clinician);
 };
 
 exports.update = function(req, res){
-	var administrator = req.administrator;
+	var clinician = req.clinician;
 
-	administrator.valid = req.body.valid;
+	clinician.valid = req.body.valid;
 
-	administrator.save(function(err){
+	clinician.save(function(err){
 		if(err){
 			return res.status(400).send({
 				message: getErrorMessage(err)
 			});
 		}else{
-			res.json(administrator);
+			res.json(clinician);
 		}
 	});
 };
 
 exports.delete = function(req, res){
-	var administrator = req.administrator;
+	var clinician = req.clinician;
 
-	administrator.remove(function(err){
+	clinician.remove(function(err){
 		if(err){
 			return res.status(400).send({
 				message: getErrorMessage(err)
 			});
 		}else{
-			res.json(administrator);
+			res.json(clinician);
 		}
 	});
 };

@@ -1,1 +1,3 @@
-angular.module('administrator', ['admin_profile','account_management','repository_management']);
+'use strict';
+
+angular.module('administrator', ['adminProfile','accountManagement','repositoryManagement']);

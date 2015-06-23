@@ -5,8 +5,7 @@ var mongoose = require('mongoose'),
 var AccountSchema = new Schema({
 	title: {
 		type: String,
-		required: true,
-		enum: ['Mr','Mrs','Miss','Dr','Rev','Ms','Other'],
+		required: true
 	},
 	firstName: {
 		type: String,
@@ -18,32 +17,23 @@ var AccountSchema = new Schema({
 	},
 	email: {
 		type: String,
-		unique: true,
-		required: true,
-		match: [/.+\@.+\..+/, "Please use a valid email address"]
+		required: true
 	},
 	username: {
 		type: String,
-		trim: true,
 		unique: true,
-		required: 'Username is required'
+		required: true
 	},
 	password: {
 		type: String,
-		required: true,
-		validate: [
-			function(password){
-				return password.length >= 6;
-			},
-			'Password too short'
-		]
+		required: true
 	},
 	salt: {
 		type: String
 	},
 	provider: {
 		type: String,
-		required: 'Provider is required'
+		default: 'local'
 	},
 	providerId: String,
 	providerDate: {},

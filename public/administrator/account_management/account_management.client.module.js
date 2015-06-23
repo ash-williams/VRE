@@ -1,1 +1,3 @@
-angular.module('account_management', []);
+'use strict';
+
+angular.module('accountManagement', ['ngRoute', 'ui.bootstrap.modal']);

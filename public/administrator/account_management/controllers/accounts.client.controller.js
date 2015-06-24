@@ -8,7 +8,8 @@ angular
 			this.account = {};
 			this.showViewModal = false;
 			this.showEditModal = false;
-			this.modalId = "";
+			var modalId = "";
+			var viewaccount = null;
 
 			this.create = function(){
 				
@@ -29,7 +30,7 @@ angular
 		    	// If an account was created successfully, create the admin, patient, clinician
 		    		if(account.accountType === "Patient"){
 						var pat = new Patients({
-				        	account: response._id,
+				        	account: response._id
 				        });
 				        pat.$save(function(response){
 				        	alert("Added successfully");
@@ -83,13 +84,42 @@ angular
 			};
 
 			this.findOne = function(){
-				this.viewacc = Accounts.get({
+				this.viewaccount = Accounts.get({
 					accountId: $routeParams.accountId
 				});
 			};
+			
+			this.findByModalId = function(){
+				var acc = Accounts.get({ accountId: modalId }, function(){
+					//alert(JSON.stringify(acc));
+					viewaccount = acc;
+					alert(JSON.stringify(viewaccount));
+					viewopen();
+				});	
+			};
+
+			this.setviewopen = function(Id) {
+				modalId = Id;
+				//alert("hello");
+				this.findByModalId();
+
+				//this.viewopen();
+				
+			};
+
+			$scope.showModal = false;
+		    $scope.toggleModal = function(){
+		        $scope.showModal = !$scope.showModal;
+		    };
+
+		    $scope.viewAccount = function(id){
+		    	alert(id);
+		    	$scope.toggleModal();
+		    }
 
 			this.viewopen = function() {
-				this.showViewModal = true;
+				alert("hello");
+				showViewModal = true;
 			};
 
 			this.viewok = function() {
@@ -117,7 +147,8 @@ angular
 			};
 		}
 	]);
-	    
+
+   
 
        
 

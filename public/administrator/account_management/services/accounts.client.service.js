@@ -5,7 +5,7 @@ angular.module('accountManagement').factory('Accounts', ['$resource', function($
     return $resource('api/accounts/:accountId', {
         accountId: '@_id'
     }, {
-        update: {
+    	update: {
             method: 'PUT'
         }
     });

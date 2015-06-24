@@ -98,7 +98,7 @@ exports.list = function(req, res, next){
 };
 
 exports.read = function(req, res){
-	res.json(req.account);
+	res.json(req.user);
 };
 
 exports.userByID = function(req, res, next, id){

@@ -57,12 +57,32 @@
 				<script type="text/javascript" src="/administrator/account_management/services/administrators.client.service.js"></script>
 				<script type="text/javascript" src="/administrator/account_management/services/clinicians.client.service.js"></script>
 				<script type="text/javascript" src="/administrator/account_management/services/patients.client.service.js"></script>
+				<script type="text/javascript" src="/administrator/account_management/config/acc-man.client.routes.js"></script>
 				<!-- repository_management -->
 				<script type="text/javascript" src="/administrator/repository_management/repository_management.client.module.js"></script>
 		<!-- End of admin module -->
 
 		<!-- clinician module -->
 		<script type="text/javascript" src="/clinician/clinician.client.module.js"></script>
+		<script type="text/javascript" src="/clinician/controllers/clinPanel.client.controller.js"></script>
+		<script type="text/javascript" src="/clinician/directives/clinician.client.directives.js"></script>
+			<!-- clin sub modules -->
+				<!-- clinProfile -->
+				<script type="text/javascript" src="/clinician/clinProfile/clinProfile.client.module.js"></script>
+				<!-- patientManagement -->
+				<script type="text/javascript" src="/clinician/patientManagement/patientManagement.client.module.js"></script>
+				<script type="text/javascript" src="/clinician/patientManagement/controllers/patManPanel.client.controller.js"></script>
+				<script type="text/javascript" src="/clinician/patientManagement/directives/patman.client.directives.js"></script>
+					<!-- patman sub modules -->
+					<!-- goals -->
+					<script type="text/javascript" src="/clinician/patientManagement/goals/goals.client.module.js"></script>
+					<!-- treatments -->
+					<script type="text/javascript" src="/clinician/patientManagement/treatments/treatments.client.module.js"></script>
+					<!-- information -->
+					<script type="text/javascript" src="/clinician/patientManagement/information/information.client.module.js"></script>
+				<!-- repository -->
+				<script type="text/javascript" src="/clinician/repository/repository.client.module.js"></script>
+		<!-- End of clin module -->
 
 		<!-- patient module -->
 		<script type="text/javascript" src="/patient/patient.client.module.js"></script>

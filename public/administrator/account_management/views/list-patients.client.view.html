@@ -19,7 +19,8 @@
 				<td data-ng-bind="pat.account.email"></td>
 				<td data-ng-bind="pat.account.username"></td>
 				<td>
-					<button class="btn btn-link" ng-click="accCtrl.viewopen()">View</button>
+					<!--<button class="btn btn-link" ng-click="accCtrl.setviewopen(pat.account._id)">View</button>-->
+					<button class="btn btn-link" ng-click="viewAccount('hello')">View</button>
 				</td>
 				<td>
 					<button class="btn btn-link" ng-click="accCtrl.editopen()">Edit</button>
@@ -33,6 +34,7 @@
 	<div data-ng-show="!accCtrl.patients">
 		No patients yet
 	</div>
+
 
 	<div modal="accCtrl.showViewModal" close="accCtrl.viewcancel()">		
 		<div class="modal-dialog">
@@ -67,4 +69,18 @@
 			</div>
 		</div>	
 	</div>
+
+	<modal title="View Account" visible="showModal">
+    <form role="form">
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" />
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </modal>
 </section>

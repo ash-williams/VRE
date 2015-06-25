@@ -29,6 +29,12 @@
 	margin: 10px;
 }
 
+.strong{
+	font-weight: bold;
+	text-align: right;
+	padding-right: 3px;
+}
+
 .tab-border{
 	border-top: none;
 	border-top-right-radius: 0px;

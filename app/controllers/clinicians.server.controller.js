@@ -40,16 +40,27 @@ exports.list = function(req, res){
 };
 
 exports.clinicianById = function(req, res, next, id){
-	Clinician.findById(id)
-	.populate('account', 'title firstName lastName fullName email username')
-	.exec(function(err, clinician){
+	// Clinician.findById(id)
+	// .populate('account', 'title firstName lastName fullName email username')
+	// .exec(function(err, clinician){
+	// 	if(err){
+	// 		return next(err);
+	// 	}
+
+	// 	if(!clinician){
+	// 		return next(new Error('Failed to load clinician ' + id));
+
+	// 		req.clinician = clinician;
+	// 		next();
+	// 	}
+	// });
+	Clinician.findOne({
+		_id: id
+	}, function(err, clinician){
 		if(err){
 			return next(err);
-		}
-
-		if(!clinician){
-			return next(new Error('Failed to load clinician ' + id));
-
+		}else{
+			//console.log("here");
 			req.clinician = clinician;
 			next();
 		}
@@ -77,15 +88,22 @@ exports.update = function(req, res){
 };
 
 exports.delete = function(req, res){
-	var clinician = req.clinician;
+	// var clinician = req.clinician;
 
-	clinician.remove(function(err){
+	// clinician.remove(function(err){
+	// 	if(err){
+	// 		return res.status(400).send({
+	// 			message: getErrorMessage(err)
+	// 		});
+	// 	}else{
+	// 		res.json(clinician);
+	// 	}
+	// });
+	req.clinician.remove(function(err){
 		if(err){
-			return res.status(400).send({
-				message: getErrorMessage(err)
-			});
+			return next(err);
 		}else{
-			res.json(clinician);
+			res.json(req.clinician);
 		}
 	});
 };

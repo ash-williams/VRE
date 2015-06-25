@@ -6,12 +6,7 @@
 		{{accCtrl.error}}
 	</div>
 
-	<div ng-show="accCtrl.success" class="alert alert-success" role="alert">
-		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-		{{accCtrl.success}}
-	</div>
-
-	<form name="frmcreateacc" data-ng-submit="frmcreateacc.$valid && accCtrl.create()" class="form-horizontal" novalidate>
+		<form name="frmcreateacc" data-ng-submit="frmcreateacc.$valid && accCtrl.create()" class="form-horizontal" novalidate>
 		<div class="form-group">
 			<label for="accType" class="col-sm-2 control-label">Account Type</label>
 			<div class="col-sm-10">

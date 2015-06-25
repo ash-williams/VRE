@@ -40,16 +40,28 @@ exports.list = function(req, res){
 };
 
 exports.administratorByID = function(req, res, next, id){
-	Administrator.findById(id)
-	.populate('account', 'title firstName lastName fullName email username')
-	.exec(function(err, administrator){
+	// Administrator.findById(id)
+	// .populate('account', 'title firstName lastName fullName email username')
+	// .exec(function(err, administrator){
+	// 	if(err){
+	// 		return next(err);
+	// 	}
+
+	// 	if(!administrator){
+	// 		return next(new Error('Failed to load administrator ' + id));
+
+	// 		req.administrator = administrator;
+	// 		next();
+	// 	}
+	// });
+	//console.log("retruning admin");
+	Administrator.findOne({
+		_id: id
+	}, function(err, administrator){
 		if(err){
 			return next(err);
-		}
-
-		if(!administrator){
-			return next(new Error('Failed to load administrator ' + id));
-
+		}else{
+			//console.log("here");
 			req.administrator = administrator;
 			next();
 		}
@@ -77,15 +89,12 @@ exports.update = function(req, res){
 };
 
 exports.delete = function(req, res){
-	var administrator = req.administrator;
-
-	administrator.remove(function(err){
+	//console.log("Hittting delete");
+	req.administrator.remove(function(err){
 		if(err){
-			return res.status(400).send({
-				message: getErrorMessage(err)
-			});
+			return next(err);
 		}else{
-			res.json(administrator);
+			res.json(req.administrator);
 		}
 	});
 };

@@ -117,7 +117,10 @@ exports.userByID = function(req, res, next, id){
 };
 
 exports.update = function(req, res, next){
-	Account.findByIdAndUpdate(req.account.id, req.body, function(err, account){
+	
+	var account = req.body;
+	//console.log(account);
+	Account.findByIdAndUpdate(req.user.id, account, function(err, account){
 		if(err){
 			return next(err);
 		}else{
@@ -127,16 +130,16 @@ exports.update = function(req, res, next){
 };
 
 exports.delete = function(req, res, next){
-	req.account.remove(function(err){
+	req.user.remove(function(err){
 		if(err){
 			return next(err);
 		}else{
-			res.json(req.account);
+			res.json(req.user);
 		}
 	});
 };
 
-exports.requiresLogin = function(req, res, nex){
+exports.requiresLogin = function(req, res, next){
 	if(!req.isAuthenticated()){
 		return res.status(401).send({
 			message: 'User is not logged in'

@@ -1,4 +1,31 @@
-<div class="container" data-ng-controller="AccountsController as accCtrl">
-	<h1 data-ng-bind="accCtrl.viewaccount.firstName"></h1>
-	Hello
+<div class="container" data-ng-controller="AccountsController">
+	<h1 data-ng-bind="viewaccount.fullName"></h1>
+	<div class="container">
+		<table>
+			<tr>
+				<td class="strong">Title: </td>
+				<td data-ng-bind="viewaccount.title"></td>
+			</tr>
+			<tr>
+				<td class="strong">First Name: </td>
+				<td data-ng-bind="viewaccount.firstName"></td>
+			</tr>
+			<tr>
+				<td class="strong">Last Name: </td>
+				<td data-ng-bind="viewaccount.lastName"></td>
+			</tr>
+			<tr>
+				<td class="strong">Email: </td>
+				<td data-ng-bind="viewaccount.email"></td>
+			</tr>
+			<tr>
+				<td class="strong">Username: </td>
+				<td data-ng-bind="viewaccount.username"></td>
+			</tr>
+			<tr>
+				<td class="strong">Created On: </td>
+				<td data-ng-bind="viewaccount.created"></td>
+			</tr>
+		</table>
+	</div>
 </div>

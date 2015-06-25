@@ -19,13 +19,13 @@
 				<td data-ng-bind="admin.account.email"></td>
 				<td data-ng-bind="admin.account.username"></td>
 				<td>
-					<button class="btn btn-link" ng-click="accCtrl.viewopen()">View</button>
+					<button class="btn btn-link" ng-click="viewAccount(admin.account._id)">View</button>
 				</td>
 				<td>
-					<button class="btn btn-link" ng-click="accCtrl.editopen()">Edit</button>
+					<button class="btn btn-link" ng-click="editAccount(admin.account._id)">Edit</button>
 				</td>
 				<td>
-					<button class="btn btn-link" ng-click="accCtrl.delete()">Delete</button>
+					<button class="btn btn-link" ng-click="accCtrl.delete(admin, admin.account, 'Administrator')">Delete</button>
 				</td>
 			</tr>
 		</table>
@@ -34,37 +34,12 @@
 		No administrators yet
 	</div>
 
-	<div modal="accCtrl.showViewModal" close="accCtrl.viewcancel()">		
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" ng-click="accCtrl.viewcancel()"><span aria-hidden="true">&times;</span></button>
-					<h4>View Account</h4>
-				</div>
-				<div class="modal-body">
-					<div viewacc></div>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-success" ng-click="accCtrl.viewok()">Okay</button>
-				</div>
-			</div>
-		</div>	
-	</div>
+	<modal title="View Account" visible="showModal">
+	    <div viewacc></div>
+ 	</modal>
 
-	<div modal="accCtrl.showEditModal" close="accCtrl.editcancel()">		
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" ng-click="accCtrl.editcancel()"><span aria-hidden="true">&times;</span></button>
-					<h4>Edit Account</h4>
-				</div>
-				<div class="modal-body">
-					<div editacc></div>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-success" ng-click="accCtrl.editok()">Okay</button>
-				</div>
-			</div>
-		</div>	
-	</div>
+ 	<modal title="Edit Account" visible="editModal">
+	    <div editacc></div>
+ 	</modal>
+
 </section>

@@ -1,0 +1,28 @@
+<div data-ng-controller="RepositoryController" calss="pad">
+	<div ng-show="error" class="alert alert-danger" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		{{error}}
+	</div>
+	
+	<form name="frmaddcategory" data-ng-submit="frmaddcategory.$valid && createCategory()" class="form-horizontal" novalidate>
+	
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-10">
+				<input type="text" id="name" class="form-control" data-ng-model="category.name" required>
+			</div>
+		</div>
+		<div data-ng-show="categories != null" class="form-group">
+			<label for="parent" class="col-sm-2 control-label">Parent Category (Optional)</label>
+			<div class="col-sm-10">
+				<select id="parent" class="form-control" data-ng-model="category.parent" data-ng-options="category.name for category in categories">
+				</select>
+			</div>
+		</div>	
+		<div>
+			<input type="submit" value="Create Category" class="btn btn-primary">
+		</div>
+	</form>
+	
+	
+</div>

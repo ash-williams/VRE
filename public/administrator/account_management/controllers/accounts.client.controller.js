@@ -2,8 +2,8 @@
 
 angular
 	.module('accountManagement')
-	.controller('AccountsController', ['$scope', '$routeParams', '$window', 'Authentication', 'Accounts', 'Administrators', 'Clinicians', 'Patients',
-		function($scope, $routeParams, $window, Authentication, Accounts, Administrators, Clinicians, Patients){
+	.controller('AccountsController', ['$scope', '$routeParams', 'Authentication', 'Accounts', 'Administrators', 'Clinicians', 'Patients',
+		function($scope, $routeParams, Authentication, Accounts, Administrators, Clinicians, Patients){
 			this.authentication = Authentication;
 			this.account = {};
 			//$scope.error = "HELLO";

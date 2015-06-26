@@ -1,18 +1,25 @@
-<div>
-	<div class="top_bar">
-		<div class="col-md-5 title">
-			<h1>Repository Management</h1>
+<section data-ng-controller="RepositoryController">
+<!-- section -->
+	<div>
+		<div class="top_bar">
+			<div class="col-md-5 title">
+				<h1>Repository Management</h1>
+			</div>
+			<div class="col-md-7 title_right">
+				<button type="button" class="btn btn-primary" data-ng-click="addCategory()">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Category
+				</button>
+			</div>
 		</div>
-		<div class="col-md-7 title_right">
-			<button type="button" id="create_item" class="btn btn-primary" data-toggle="modal">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Item
-			</button>
+		<div class="main_content"> <!--- data-ng-controller="RepositoryManagementController as repman">-->
+			<div class="panel space_top">
+				Content
+			</div>	
 		</div>
-	</div>
-	<div class="main_content"> <!--- data-ng-controller="RepositoryManagementController as repman">-->
-		<div class="panel space_top">
-			Content
-		</div>	
-	</div>	
-</div>
+
+		<modal title="Add Category" visible="addCatModal">
+		    <div addcat></div>
+	 	</modal>	
+ 	</div>
+</section>
 

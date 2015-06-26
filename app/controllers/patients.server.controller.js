@@ -12,7 +12,7 @@ var getErrorMessage = function(err){
 	}
 };
 
-exports.create = function(req, res){
+exports.create = function(req, res, next){
 	var pat = new Patient(req.body);
 	pat.creator = req.user;
 	
@@ -40,22 +40,7 @@ exports.list = function(req, res){
 };
 
 exports.patientById = function(req, res, next, id){
-	// Patient.findById(id)
-	// .populate('account', 'title firstName lastName fullName email username')
-	// .exec(function(err, patient){
-	// 	if(err){
-	// 		return next(err);
-	// 	}
-
-	// 	if(!patient){
-	// 		return next(new Error('Failed to load patient ' + id));
-
-	// 		req.patient = patient;
-	// 		next();
-	// 	}
-	// });
-
-Patient.findOne({
+	Patient.findOne({
 		_id: id
 	}, function(err, patient){
 		if(err){

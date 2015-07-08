@@ -27,7 +27,10 @@
 		<script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
 		<script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
 		<script type="text/javascript" src="/lib/angular-bootstrap/ui-bootstrap.js"></script>
+		<script type="text/javascript" src="/lib/ng-file-upload/ng-file-upload-shim.js"></script>
+		<script type="text/javascript" src="/lib/ng-file-upload/ng-file-upload.js"></script>
 		<script type="text/javascript" src="/lib/custom-js/modal.js"></script>
+		<script type="text/javascript" src="/lib/custom-js/filter.js"></script>
 		<!-- endinject -->
 
 		<!-- core module -->
@@ -35,12 +38,14 @@
 		<script type="text/javascript" src="/main/controllers/main.client.controller.js"></script>
 		<script type="text/javascript" src="/main/config/main.client.routes.js"></script>
 		<script type="text/javascript" src="/main/directives/main.client.directives.js"></script>
+		<script type="text/javascript" src="/main/services/accounts.client.service.js"></script>
+		<script type="text/javascript" src="/main/services/patients.client.service.js"></script>
 
 		<!-- administrators module -->
 		<script type="text/javascript" src="/administrator/administrator.client.module.js"></script>
 		<script type="text/javascript" src="/administrator/controllers/adminPanel.client.controller.js"></script>
 		<script type="text/javascript" src="/administrator/directives/administrator.client.directives.js"></script>
-
+		<script type="text/javascript" src="/administrator/config/administrator.client.routes.js"></script>
 
 
 		<!--
@@ -56,37 +61,27 @@
 				<script type="text/javascript" src="/administrator/account_management/controllers/acc_man.client.controller.js"></script>
 				<script type="text/javascript" src="/administrator/account_management/controllers/accounts.client.controller.js"></script>
 				<script type="text/javascript" src="/administrator/account_management/directives/acc_man.client.directives.js"></script>
-				<script type="text/javascript" src="/administrator/account_management/services/accounts.client.service.js"></script>
 				<script type="text/javascript" src="/administrator/account_management/services/administrators.client.service.js"></script>
 				<script type="text/javascript" src="/administrator/account_management/services/clinicians.client.service.js"></script>
-				<script type="text/javascript" src="/administrator/account_management/services/patients.client.service.js"></script>
+				
 				<!-- repository_management -->
 				<script type="text/javascript" src="/administrator/repository_management/repository_management.client.module.js"></script>
 				<script type="text/javascript" src="/administrator/repository_management/controllers/repository.client.controller.js"></script>
 				<script type="text/javascript" src="/administrator/repository_management/directives/repository.client.directives.js"></script>
 				<script type="text/javascript" src="/administrator/repository_management/services/categories.client.service.js"></script>
+				<script type="text/javascript" src="/administrator/repository_management/services/content.client.service.js"></script>
 		<!-- End of admin module -->
 
 		<!-- clinician module -->
 		<script type="text/javascript" src="/clinician/clinician.client.module.js"></script>
-		<script type="text/javascript" src="/clinician/controllers/clinPanel.client.controller.js"></script>
+		<script type="text/javascript" src="/clinician/controllers/patientManagement.client.controller.js"></script>
+		<script type="text/javascript" src="/clinician/controllers/clinicianRepository.client.controller.js"></script>
+		<script type="text/javascript" src="/clinician/controllers/clinicianProfile.client.controller.js"></script>
+		<script type="text/javascript" src="/clinician/controllers/patientView.client.controller.js"></script>
 		<script type="text/javascript" src="/clinician/directives/clinician.client.directives.js"></script>
-			<!-- clin sub modules -->
-				<!-- clinProfile -->
-				<script type="text/javascript" src="/clinician/clinProfile/clinProfile.client.module.js"></script>
-				<!-- patientManagement -->
-				<script type="text/javascript" src="/clinician/patientManagement/patientManagement.client.module.js"></script>
-				<script type="text/javascript" src="/clinician/patientManagement/controllers/patManPanel.client.controller.js"></script>
-				<script type="text/javascript" src="/clinician/patientManagement/directives/patman.client.directives.js"></script>
-					<!-- patman sub modules -->
-					<!-- goals -->
-					<script type="text/javascript" src="/clinician/patientManagement/goals/goals.client.module.js"></script>
-					<!-- treatments -->
-					<script type="text/javascript" src="/clinician/patientManagement/treatments/treatments.client.module.js"></script>
-					<!-- information -->
-					<script type="text/javascript" src="/clinician/patientManagement/information/information.client.module.js"></script>
-				<!-- repository -->
-				<script type="text/javascript" src="/clinician/repository/repository.client.module.js"></script>
+		<script type="text/javascript" src="/clinician/config/clinician.client.routes.js"></script>
+		<script type="text/javascript" src="/clinician/services/clinpat.client.service.js"></script>
+			
 		<!-- End of clin module -->
 
 		<!-- patient module -->

@@ -8,7 +8,10 @@ module.exports = function(){
 	require('../app/models/administrator.server.model');
 	require('../app/models/patient.server.model');
 	require('../app/models/clinician.server.model');
+	require('../app/models/clinicianspatients.server.model');
 	require('../app/models/category.server.model');
+	require('../app/models/content.server.model');
+
 
 	return db;
 }

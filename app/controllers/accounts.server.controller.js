@@ -31,7 +31,7 @@ exports.renderSignIn = function(req, res, next){
 			messages: req.flash('error') || req.flash('info')
 		});
 	}else{
-		return res.redirect('/');
+		return res.redirect('/#!/');
 	}
 };
 

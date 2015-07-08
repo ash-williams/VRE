@@ -42,8 +42,10 @@ module.exports = function(){
 	require('../app/routes/accounts.server.routes.js')(app);
 	require('../app/routes/administrators.server.routes.js')(app);
 	require('../app/routes/clinicians.server.routes.js')(app);
+	require('../app/routes/clinicianspatients.server.routes.js')(app);
 	require('../app/routes/patients.server.routes.js')(app);
 	require('../app/routes/categories.server.routes.js')(app);
+	require('../app/routes/content.server.routes.js')(app);
 
 	app.use(express.static('./public'));
 

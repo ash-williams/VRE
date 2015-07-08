@@ -1,0 +1,65 @@
+<div data-ng-init="getPatient(patId)">
+	<clinnav></clinnav>
+
+	<div class="container body-content panel panel-default">
+		<div>
+			<div class="top_bar">
+				<div class="col-md-5 title">
+					<h1>{{patient.account.title}} {{patient.account.firstName}} {{patient.account.lastName}}</h1>
+				</div>
+				<div class="col-md-7 title_right">
+					
+				</div>
+			</div>
+			<div class="main_content">
+				<div ng-show="success">
+					{{success}}
+				</div>
+				<div class="container">
+					<h4>Account Details</h4>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="col-sm-3 strong">
+								Email:
+							</div>
+							<div class="col-sm-9">
+								{{patient.account.email}} 
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="col-sm-3 strong">
+								Username:
+							</div>
+							<div class="col-sm-9">
+								{{patient.account.username}} 
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="col-sm-3 strong">
+								Created By:
+							</div>
+							<div class="col-sm-9">
+								{{patient.creator}} 
+							</div> 
+						</div>
+						<div class="col-md-6">
+							<div class="col-sm-3 strong">
+								Created On:
+							</div>
+							<div class="col-sm-9">
+								{{patient.created}}  
+							</div> 
+						</div>
+					</div>
+					<div class="container">
+					EE
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

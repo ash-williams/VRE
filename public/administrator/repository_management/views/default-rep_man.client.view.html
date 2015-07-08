@@ -1,25 +1,88 @@
-<section data-ng-controller="RepositoryController">
-<!-- section -->
-	<div>
-		<div class="top_bar">
-			<div class="col-md-5 title">
-				<h1>Repository Management</h1>
-			</div>
-			<div class="col-md-7 title_right">
-				<button type="button" class="btn btn-primary" data-ng-click="addCategory()">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Category
-				</button>
-			</div>
-		</div>
-		<div class="main_content"> <!--- data-ng-controller="RepositoryManagementController as repman">-->
-			<div class="panel space_top">
-				Content
-			</div>	
-		</div>
+<div>
+	<adminnav></adminnav>
 
-		<modal title="Add Category" visible="addCatModal">
-		    <div addcat></div>
-	 	</modal>	
- 	</div>
-</section>
+	<div class="container body-content panel panel-default">
+
+		<section data-ng-controller="RepositoryController">
+			<div>
+				<div class="top_bar">
+					<div class="col-md-5 title">
+						<h1>Repository Management</h1>
+					</div>
+					<div class="col-md-7 title_right">
+						<button type="button" class="btn btn-primary" data-ng-click="addCategory()">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Category
+						</button>
+						<button type="button" class="btn btn-primary" data-ng-click="addContent()">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Content
+						</button>
+					</div>
+				</div>
+				<div class="main_content">
+					<div class="space_top">
+						<div class="">
+							<div class="col-sm-2 center" data-ng-repeat="cat in categories | filter:{parentCategory: {name: 'Master'}}" ng-show="isSelected('558c3049b3ed0904298feefb')">
+								<a href="" ng-click="selectView(cat._id)">
+									<img src="/images/folder-icon.png" class="img-thumbnail" alt="{{cat.name}}" />
+									<br />
+									<h4>{{cat.name}}</h4>
+								</a>
+							</div>
+
+							<div data-ng-repeat="cat in categories | filter:{name: '!Master'}" ng-show="isSelected(cat._id)">
+								<div class="panel">
+									<button class="btn btn-primary" ng-click="backButton()">
+										<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+										Back
+									</button>
+									<div class="pull-right">
+										<button type="button" class="btn btn-link" data-ng-click="editCategory()">
+											Edit Category
+										</button>
+										<button type="button" class="btn btn-link" data-ng-click="deleteCategory()">
+											Delete Category
+										</button>
+									</div>
+									<br /><br />
+									<!-- Sub cats -->
+									<div class="col-sm-2 center" data-ng-repeat="subcat in categories | filter:{parentCategory: {_id: cat._id}}">
+										<a href="" ng-click="selectView(subcat._id)">
+											<img src="/images/folder-icon.png" class="img-thumbnail" alt="{{subcat.name}}" />
+											<br />
+											<h4>{{subcat.name}}</h4>
+										</a>
+									</div>
+
+									<!-- content -->
+									<div class="col-sm-2 center" data-ng-repeat="item in allContent | filter:{category: item.category_id}">
+										<a href="" ng-click="">
+											<h4>{{item.name}}</h4>
+										</a>
+									</div>
+
+
+
+								<!--{{cat.name}} Content-->
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+
+				<modal title="Add Category" visible="addCatModal">
+				    <div addcat></div>
+			 	</modal>
+
+			 	<modal title="Edit Category" visible="editCatModal">
+				    <div editcat></div>
+			 	</modal>
+
+			 	<modal title="Add Content" visible="addConModal">
+				    <div addcon></div>
+			 	</modal>	
+		 	</div>
+		</section>
+	</div>
+</div>
+
 

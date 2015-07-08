@@ -41,6 +41,14 @@
 	border-top-left-radius: 0px;
 }
 
+.center{
+	text-align: center;
+}
+
+.big_space_top{
+	margin-top: 15px;
+}
+
 /* Forms validation */
 .ng-invalid.ng-dirty{
 	border-color: #fa787e;

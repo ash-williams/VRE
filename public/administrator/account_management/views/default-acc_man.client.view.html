@@ -1,26 +1,32 @@
 <div>
-	<div class="top_bar">
-		<div class="col-md-5 title">
-			<h1>Account Management</h1>
-		</div>
-		<div class="col-md-7 title_right">
-			<button type="button" id="create_account" class="btn btn-primary" data-toggle="modal" data-target="#create_account_modal">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Account
-			</button>
+	<adminnav></adminnav>
+
+	<div class="container body-content panel panel-default">
+		<div>
+			<div class="top_bar">
+				<div class="col-md-5 title">
+					<h1>Account Management</h1>
+				</div>
+				<div class="col-md-7 title_right">
+					<button type="button" id="create_account" class="btn btn-primary" data-toggle="modal" data-target="#create_account_modal">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Account
+					</button>
+				</div>
+			</div>
+			<div class="main_content" data-ng-controller="AccountManagementController as accman">
+				<ul class="nav nav-tabs space_top">
+					<li ng-class="{active:accman.isSelected(1)}"><a href ng-click="accman.selectTab(1)">Patients</a></li>
+					<li ng-class="{active:accman.isSelected(2)}"><a href ng-click="accman.selectTab(2)">Clinicians</a></li>
+					<li ng-class="{active:accman.isSelected(3)}"><a href ng-click="accman.selectTab(3)">Administrators</a></li>
+				</ul>
+				<div class="panel panel-default tab-border">
+		        	<div patientaccs ng-show="accman.isSelected(1)"></div>    
+		        	<div clinicianaccs ng-show="accman.isSelected(2)"></div>
+		        	<div adminaccs ng-show="accman.isSelected(3)"></div>
+		        </div>
+		    </div>
 		</div>
 	</div>
-	<div class="main_content" data-ng-controller="AccountManagementController as accman">
-		<ul class="nav nav-tabs space_top">
-			<li ng-class="{active:accman.isSelected(1)}"><a href ng-click="accman.selectTab(1)">Patients</a></li>
-			<li ng-class="{active:accman.isSelected(2)}"><a href ng-click="accman.selectTab(2)">Clinicians</a></li>
-			<li ng-class="{active:accman.isSelected(3)}"><a href ng-click="accman.selectTab(3)">Administrators</a></li>
-		</ul>
-		<div class="panel panel-default tab-border">
-        	<div patientaccs ng-show="accman.isSelected(1)"></div>    
-        	<div clinicianaccs ng-show="accman.isSelected(2)"></div>
-        	<div adminaccs ng-show="accman.isSelected(3)"></div>
-        </div>
-    </div>
 </div>
 
 <div class="modal fade" id="create_account_modal" role="dialog">
@@ -38,4 +44,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
 

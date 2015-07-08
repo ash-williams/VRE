@@ -1,0 +1,29 @@
+<section data-ng-init="getPatients()">
+	<div class="pull-right"> 
+		<input type="text" class="form-control" id="search" placeholder="Search" />
+	</div>
+	<div class="big_space_top">
+		<table class="table table-striped table-hover" id="table">
+			<tr>
+				<th>Title</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+				<th>Username</th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="pat in patients">
+				<td>{{pat.account.title}}</td>
+				<td>{{pat.account.firstName}}</td>
+				<td>{{pat.account.lastName}}</td>
+				<td>{{pat.account.email}}</td>
+				<td>{{pat.account.username}}</td>
+				<td>
+					<button class="btn btn-link" ng-click="assignPatient(pat.account._id)">
+						Assign
+					</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</section>

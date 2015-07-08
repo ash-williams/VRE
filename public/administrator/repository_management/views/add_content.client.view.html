@@ -1,0 +1,52 @@
+<div data-ng-controller="RepositoryController" calss="pad">
+	<div ng-show="error" class="alert alert-danger" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		{{error}}
+	</div>
+	
+	<form name="frmaddcontent" data-ng-submit="frmaddcontent.$valid && createContent()" class="form-horizontal" novalidate>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-10">
+				<input type="text" id="name" class="form-control" data-ng-model="content.name" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="clin_desc" class="col-sm-2 control-label">Clinician Description</label>
+			<div class="col-sm-10">
+				<textarea id="clin_desc" class="form-control" data-ng-model="content.clinician_description" required></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="pat_desc" class="col-sm-2 control-label">Patient Description</label>
+			<div class="col-sm-10">
+				<textarea id="pat_desc" class="form-control" data-ng-model="content.patient_description" required></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="file" class="col-sm-2 control-label">File</label>
+			<div class="col-sm-10">
+				<input type="file" id="file" class="form-control" data-ng-file-select="onFileSelect($file)" required>
+			</div>
+		</div>
+		
+		
+		<div>
+			<input type="submit" value="Create Content" class="btn btn-primary">
+		</div>
+	</form>
+	
+	
+</div>
+
+
+<!-- 	type: {
+		type: String,
+		required: true
+	},
+	
+	
+	path: {
+		type: String,
+		required: true
+	}, -->

@@ -1,0 +1,54 @@
+<div data-ng-init="clinpatients()">
+	<clinnav></clinnav>
+
+	<div class="container body-content panel panel-default">
+		<div>
+			<div class="top_bar">
+				<div class="col-md-5 title">
+					<h1>Patient Management</h1>
+				</div>
+				<div class="col-md-7 title_right">
+					<button class="btn btn-primary" ng-click="viewAssign()">
+						Assign Patients
+					</button>
+					<div class="pull-right"> 
+						<input type="text" class="form-control" id="search" placeholder="Search" />
+					</div>
+				</div>
+			</div>
+			<div class="main_content">
+				<div ng-show="success">
+					{{success}}
+				</div>
+				<table class="table table-striped table-hover" id="table">
+					<tr>
+						<th>Title</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email</th>
+						<th>Username</th>
+						<th></th>
+						<th></th>
+					</tr>
+					<tr ng-repeat="pat in patientList track by $index">
+						<td>{{pat.title}}</td>
+						<td>{{pat.firstName}}</td>
+						<td>{{pat.lastName}}</td>
+						<td>{{pat.email}}</td>
+						<td>{{pat.username}}</td>
+						<td>
+							<button class="btn btn-link" ng-click="viewPatient(pat._id)">
+								View
+							</button>
+						</td>
+						<td>Actions</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<modal title="Assign Patients" visible="assignModal">
+    <div asspat></div>
+</modal>

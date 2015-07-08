@@ -4,23 +4,23 @@
 		{{error}}
 	</div>
 	
-	<form name="frmaddcategory" data-ng-submit="frmaddcategory.$valid && createCategory()" class="form-horizontal" novalidate>
+	<form name="frmeditcategory" data-ng-submit="frmeditcategory.$valid && editCategory()" class="form-horizontal" novalidate>
 	
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Name</label>
 			<div class="col-sm-10">
-				<input type="text" id="name" class="form-control" data-ng-model="category.name" required>
+				<input type="text" id="name" class="form-control" data-ng-model="tempCat.name" required />
 			</div>
 		</div>
 		<div data-ng-show="categories != null" class="form-group">
 			<label for="parent" class="col-sm-2 control-label">Parent Category (Optional)</label>
 			<div class="col-sm-10">
-				<select id="parent" class="form-control" data-ng-model="category.parentCategory" data-ng-options="category.name for category in categories">
+				<select id="parent" class="form-control" data-ng-model="tempCat.parentCategory" data-ng-options="category.name for category in categories | filter:{name: '!tempCat.name'}">
 				</select>
 			</div>
 		</div>	
 		<div>
-			<input type="submit" value="Create Category" class="btn btn-primary">
+			<input type="submit" value="Edit Category" class="btn btn-primary">
 		</div>
 	</form>
 	

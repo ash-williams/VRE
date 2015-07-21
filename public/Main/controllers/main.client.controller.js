@@ -10,7 +10,8 @@ angular.module('main').controller('MainController', ['$scope', '$location',
 
 			if($scope.authentication.user.accountType === 'Administrator'){
 				$location.path('/Administrator');
-			}		
+			}
+	
 		}
 		
 	}

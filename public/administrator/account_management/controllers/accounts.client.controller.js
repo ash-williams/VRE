@@ -2,8 +2,8 @@
 
 angular
 	.module('accountManagement')
-	.controller('AccountsController', ['$scope', '$routeParams', 'Authentication', 'Accounts', 'Administrators', 'Clinicians', 'Patients',
-		function($scope, $routeParams, Authentication, Accounts, Administrators, Clinicians, Patients){
+	.controller('AccountsController', ['$scope', '$routeParams', 'Authentication', 'Accounts', 'Administrators', 'Clinicians', 'Patients', 'CliniciansPatients', 
+		function($scope, $routeParams, Authentication, Accounts, Administrators, Clinicians, Patients, CliniciansPatients){
 			this.authentication = Authentication;
 			this.account = {};
 			//$scope.error = "HELLO";
@@ -93,6 +93,7 @@ angular
 			
 			$scope.showModal = false;
 			$scope.editModal = false;
+			$scope.viewPatModal = false;
 
 		    $scope.toggleModal = function(){
 		        $scope.showModal = !$scope.showModal;
@@ -102,15 +103,23 @@ angular
 		        $scope.editModal = !$scope.editModal;
 		    };
 
+		    $scope.toggleViewPatients = function(id){
+		    	$scope.getClinsPatients(id);
+		        $scope.viewPatModal = !$scope.viewPatModal;
+		    };
+
 		    $scope.viewAccount = function(id){
 		    	//alert(id);
-		    	var acc = Accounts.get({ accountId: id }, function(){
+		    	
+	    		var acc = Accounts.get({ accountId: id }, function(){
 					//alert(JSON.stringify(acc));
 					$scope.viewaccount = acc;
-					//alert($scope.viewaccount.firstName);
+				
 					$scope.toggleModal();
 				});	
+				
 		    };
+
 
 		    $scope.editAccount = function(id){
 		    	//alert(id);
@@ -181,6 +190,11 @@ angular
 				window.location.reload();
 			};
 
+			$scope.getClinsPatients = function(id){
+				alert(id);
+			}
+
+		
 	}]);
    
 

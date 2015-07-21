@@ -1,0 +1,16 @@
+<div class=""  data-ng-init="getOldGoals()">
+	<div class="pad">
+		<table class="table table-striped table-hover" id="table">
+			<tr>
+				<th>Description</th>
+				<th>Term</th>
+				<th>Set On</th>
+			</tr>
+			<tr ng-repeat="gol in completedGoals track by $index">
+				<td>{{gol.description}}</td>
+				<td>{{gol.term}}</td>
+				<td>{{gol.created}}</td>
+			</tr>
+		</table>	
+	</div>
+</div>

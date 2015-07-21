@@ -41,7 +41,7 @@
 								Created By:
 							</div>
 							<div class="col-sm-9">
-								{{patient.creator}} 
+								{{creator.fullName}} 
 							</div> 
 						</div>
 						<div class="col-md-6">
@@ -53,8 +53,17 @@
 							</div> 
 						</div>
 					</div>
-					<div class="container">
-					EE
+					<div class="col-md-12">
+						<ul class="nav nav-tabs space_top">
+							<li ng-class="{active:isTabSelected(1)}"><a href ng-click="selectTab(1)">Goals</a></li>
+							<li ng-class="{active:isTabSelected(2)}"><a href ng-click="selectTab(2)">Treatments</a></li>
+							<li ng-class="{active:isTabSelected(3)}"><a href ng-click="selectTab(3)">Information</a></li>
+						</ul>
+						<div class="panel panel-default tab-border">
+				        	<div goals ng-show="isTabSelected(1)"></div>    
+				        	<div treatments ng-show="isTabSelected(2)"></div>
+				        	<div information ng-show="isTabSelected(3)"></div>
+				        </div>
 					</div>
 				</div>
 			</div>

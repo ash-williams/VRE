@@ -68,6 +68,8 @@ angular
 		    	
 		    	$location.path('/Clinician/Patient/' + patId);
 		    }
+
+		    
 				
 			
 

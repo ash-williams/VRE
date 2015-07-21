@@ -1,1 +1,63 @@
-Goals
+<div class=""  data-ng-init="patGoals()">
+	<div class="top_bar">
+				<div class="col-md-5 title">
+					<h1>Goals</h1>
+				</div>
+				<div class="col-md-7 title_right">
+					<button type="button" class="btn btn-primary" data-ng-click="addGoal()">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Goal
+					</button>
+					<button type="button" class="btn btn-link" data-ng-click="viewCompletedGoals()">
+						View Completed
+					</button>
+				</div>
+			</div>
+			<div class="pad">
+				<table class="table table-striped table-hover" id="table">
+					<tr>
+						<th>Description</th>
+						<th>Term</th>
+						<th>Set On</th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+					<tr ng-repeat="gol in goalList track by $index">
+						<td>{{gol.description}}</td>
+						<td>{{gol.term}}</td>
+						<td>{{gol.created}}</td>
+						<td>
+							<button class="btn btn-link" ng-click="editGoal(gol._id)">
+								Edit
+							</button>
+						</td>
+						<td>
+							<button class="btn btn-link" ng-click="setAsCompleteModal(gol._id)">
+								Set As Complete
+							</button>
+						</td>
+						<td>
+						<button class="btn btn-link" ng-click="deleteGoal(gol._id)">
+								Delete
+							</button>
+						</td>
+					</tr>
+				</table>	
+			</div>
+</div>
+
+<modal title="Add Goal" visible="addGoalModal">
+	<div addgoal></div>
+</modal>
+
+<modal title="Completed Goals" visible="viewCompleteModal">
+	<div viewcompletegoal></div>
+</modal>
+
+<modal title="Edit Goal" visible="editGoalModal">
+	<div editgoal></div>
+</modal>
+
+<modal title="Complete Goal" visible="setCompleteModal">
+	<div completegoal></div>
+</modal>

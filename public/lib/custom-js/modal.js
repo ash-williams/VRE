@@ -66,13 +66,13 @@ angular.module('ui.bootstrap.modal', [])
         body.addClass('modal-open');
       }
 
-      scope.$watch(shownExpr, function(isShown, oldShown) {
-        if (isShown) {
-          open();
-        } else {
-          close();
-        }
-      });
+      // scope.$watch(shownExpr, function(isShown, oldShown) {
+      //   if (isShown) {
+      //     open();
+      //   } else {
+      //     close();
+      //   }
+      // });
     }
   };
 }]);

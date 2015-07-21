@@ -11,6 +11,7 @@ module.exports = function(){
 	require('../app/models/clinicianspatients.server.model');
 	require('../app/models/category.server.model');
 	require('../app/models/content.server.model');
+	require('../app/models/goal.server.model');
 
 
 	return db;

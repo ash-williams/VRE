@@ -46,6 +46,7 @@ module.exports = function(){
 	require('../app/routes/patients.server.routes.js')(app);
 	require('../app/routes/categories.server.routes.js')(app);
 	require('../app/routes/content.server.routes.js')(app);
+	require('../app/routes/goals.server.routes.js')(app);
 
 	app.use(express.static('./public'));
 

@@ -12,6 +12,7 @@
 				<th></th>
 				<th></th>
 				<th></th>
+				<th></th>
 			</tr>
 			<tr data-ng-repeat="clin in accCtrl.clinicians">
 				<td data-ng-bind="clin.account.title"></td>
@@ -22,6 +23,9 @@
 				<td data-ng-bind="clin.account.username"></td>
 				<td>
 					<button class="btn btn-link" ng-click="viewAccount(clin.account._id)">View</button>
+				</td>
+				<td>
+				<button class="btn btn-link" ng-click="toggleViewPatients(clin.account._id)">View Patients</button>
 				</td>
 				<td>
 					<button class="btn btn-link" ng-click="editAccount(clin.account._id)">Edit</button>
@@ -42,5 +46,9 @@
 
  	<modal title="Edit Account" visible="editModal">
 	    <div editacc></div>
+ 	</modal>
+
+ 	<modal title="View Patients" visible="viewPatModal">
+	    <div viewpats></div>
  	</modal>
 </section>

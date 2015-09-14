@@ -1,0 +1,23 @@
+<div>	
+	<form name="frmedittreatment" data-ng-submit="frmedittreatment.$valid && updateTreatment()" class="form-horizontal" novalidate>
+	
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-10">
+				<input type="text" id="name" class="form-control" data-ng-model="treatment.name" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="desc" class="col-sm-2 control-label">Details</label>
+			<div class="col-sm-10">
+				<textarea id="desc" class="form-control" data-ng-model="treatment.details" required></textarea>
+			</div>
+		</div>
+
+		<div>
+			<input type="submit" value="Update Treatment" class="btn btn-primary">
+		</div>
+	</form>
+	
+	
+</div>

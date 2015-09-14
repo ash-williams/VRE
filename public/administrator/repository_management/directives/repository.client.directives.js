@@ -19,6 +19,12 @@ angular
 			restrict: 'A',
 			templateUrl: '/administrator/repository_management/views/add_content.client.view.html'
 		}
+	})
+	.directive('editcont', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/administrator/repository_management/views/edit_content.client.view.html'
+		}
 	});
 
 

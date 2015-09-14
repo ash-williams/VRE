@@ -21,6 +21,10 @@ var ContentSchema = new Schema({
 		ref: 'Category',
 		required: true
 	},
+	times_assigned: {
+		type: Number,
+		default: 0
+	},
 	path: {
 		type: String,
 		unique: true,

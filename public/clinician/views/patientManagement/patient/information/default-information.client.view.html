@@ -1,13 +1,54 @@
-<div class="container">
+<div class="" data-ng-init="patInformation()">
 	<div class="top_bar">
-				<div class="col-md-5 title">
-					<h1>Information</h1>
-				</div>
-				<div class="col-md-7 title_right">
-					
-				</div>
-			</div>
-			<div class="main_content">
-				Information
-			</div>
+		<div class="col-md-5 title">
+			<h1>Information</h1>
+		</div>
+		<div class="col-md-7 title_right">
+			<button type="button" class="btn btn-primary" data-ng-click="addInformation()">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Information
+			</button>
+		</div>
+	</div>
+	<div class="pad">
+		<table class="table table-striped table-hover" id="table">
+			<tr>
+				<th>Name</th>
+				<th>Set On</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="inf in informationList track by $index">
+				<td>{{inf.name}}</td>
+				<td>{{inf.created}}</td>
+				<td>
+					<button class="btn btn-link" ng-click="viewInformation(inf._id)">
+						View
+					</button>
+				</td>
+				<td>
+					<div class="btn-group">
+						<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Action <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="" ng-click="editInformation(inf._id)">Edit</a></li>
+							<li><a href="" ng-click="deleteInformation(inf._id)">Delete</a></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>	
+	</div>
 </div>
+
+<modal title="Add Information" visible="addInformationModal">
+	<div addinformation></div>
+</modal>
+
+<modal title="View Information" visible="viewInformationModal">
+	<div viewinformation></div>
+</modal>
+
+<modal title="Edit Information" visible="editInformationModal">
+	<div editinformation></div>
+</modal>

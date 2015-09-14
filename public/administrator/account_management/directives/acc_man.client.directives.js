@@ -41,6 +41,24 @@ angular
 			restrict: 'A',
 			templateUrl: '/administrator/account_management/views/view_clins_patients.client.view.html'
 		}
+	})
+	.directive('viewclins', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/administrator/account_management/views/view_pats_clinicians.client.view.html'
+		}
+	})
+	.directive('assignclin', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/administrator/account_management/views/assignclin.client.view.html'
+		}
+	})
+	.directive('assignpat', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/administrator/account_management/views/assignpat.client.view.html'
+		}
 	});
 
 

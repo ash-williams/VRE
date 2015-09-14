@@ -6,36 +6,42 @@
 	</div>
 
 	<h1>Patients</h1>
-	<div class="table-responsive">
-		<table class="table table-striped table-hover">
-			<tr>
-				<th>Title</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Email</th>
-				<th>Username</th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-			<tr data-ng-repeat="pat in accCtrl.patients">
-				<td data-ng-bind="pat.account.title"></td>
-				<td data-ng-bind="pat.account.firstName"></td>
-				<td data-ng-bind="pat.account.lastName"></td>
-				<td data-ng-bind="pat.account.email"></td>
-				<td data-ng-bind="pat.account.username"></td>
-				<td>
-					<!--<button class="btn btn-link" ng-click="accCtrl.setviewopen(pat.account._id)">View</button>-->
-					<button class="btn btn-link" ng-click="viewAccount(pat.account._id)">View</button>
-				</td>
-				<td>
-					<button class="btn btn-link" ng-click="editAccount(pat.account._id)">Edit</button>
-				</td>
-				<td>
-					<button class="btn btn-link" ng-click="accCtrl.delete(pat, pat.account, 'Patient')">Delete</button>
-				</td>
-			</tr>
-		</table>
+	<div class="">
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<tr>
+					<th>Title</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Username</th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+				<tr data-ng-repeat="pat in accCtrl.patients">
+					<td data-ng-bind="pat.account.title"></td>
+					<td data-ng-bind="pat.account.firstName"></td>
+					<td data-ng-bind="pat.account.lastName"></td>
+					<td data-ng-bind="pat.account.email"></td>
+					<td data-ng-bind="pat.account.username"></td>
+					<td>
+						<!--<button class="btn btn-link" ng-click="accCtrl.setviewopen(pat.account._id)">View</button>-->
+						<button class="btn btn-link" ng-click="viewAccount(pat.account._id)">View</button>
+					</td>
+					<td>
+						<button class="btn btn-link" ng-click="toggleViewClinicians(pat.account._id)">View Clinicians</button>
+					</td>
+					<td>
+						<button class="btn btn-link" ng-click="editAccount(pat.account._id)">Edit</button>
+					</td>
+					<td>
+						<button class="btn btn-link" ng-click="accCtrl.delete(pat, pat.account, 'Patient')">Delete</button>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 	<div data-ng-show="!accCtrl.patients">
 		No patients yet
@@ -46,7 +52,15 @@
 	    <div viewacc></div>
  	</modal>
 
+ 	<modal title="View Clinicians" visible="viewClinModal">
+	    <div viewclins></div>
+ 	</modal>
+
  	<modal title="Edit Account" visible="editModal">
 	    <div editacc></div>
  	</modal>
+
+ 	<modal title="Assign Patient to Clinician" visible="assignPatModal">
+		<div assignclin></div>
+	</modal>
 </section>

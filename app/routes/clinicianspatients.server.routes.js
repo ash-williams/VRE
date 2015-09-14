@@ -10,7 +10,7 @@ module.exports = function(app){
 	app.route('/api/clinicianPatient/:clinpatId')
 		.get(clinpats.read)
 		.put(accounts.requiresLogin, accounts.isAdministrator, clinpats.update)
-		.delete(accounts.requiresLogin, accounts.isAdministrator, clinpats.delete);
+		.delete(accounts.requiresLogin, clinpats.delete);
 
 	app.param('clinpatId', clinpats.clinpatById);
 }

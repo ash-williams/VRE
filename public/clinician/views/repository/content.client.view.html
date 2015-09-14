@@ -1,0 +1,91 @@
+<div>
+	<clinnav></clinnav>
+
+	<div class="container body-content panel panel-default" ng-init="getContent(conId)">
+		<div>
+			<div class="top_bar">
+				<div class="col-md-5 title">
+					<h1>{{thiscontent.name}}</h1>
+				</div>
+				<div class="col-md-7 title_right">
+					<a ng-show="thiscontent.category != '558c3049b3ed0904298feefb'" href="/#!/Clinician/Repository/Category/{{thiscontent.category}}" class="btn btn-link">Back to Category</a>
+					<a ng-show="thiscontent.category === '558c3049b3ed0904298feefb'" href="/#!/Clinician/Repository/" class="btn btn-link">Back to Category</a>
+					<button class="btn btn-primary" ng-click="assignContent(conId)">
+						Assign to patient
+					</button>
+				</div>
+			</div>
+			<div class="main_content">
+				<div ng-show="success" class="alert alert-success">
+				{{success}}
+				</div>
+				<div class="row">
+					<div class="col-lg-8">
+						<div>
+						<div class="space_top center" ng-show="isType(thiscontent, 'video')">
+								<video width="700" ng-src="{{getFullPath(thiscontent)}}" controls>
+									<!-- <source src="{{fullPath}}" type="{{thiscontent.type}}">  -->
+									Your browser does not support the video tag.
+								</video> 
+							</div>
+
+							<div class="space_top center" ng-show="isType(thiscontent, 'image')">
+								<img width="700" src="{{getFullPath(thiscontent)}}" alt="{{thisContent.name}}"/>
+							</div>
+
+							<div class="space_top" ng-show="isType(thiscontent, 'application')">
+								<a href="{{getFullPath(thiscontent)}}" class="btn btn-link">Download Link</a>
+							</div>
+
+							<div class="space_top" ng-show="isType(thiscontent, 'audio')">
+								<audio ng-src="{{getFullPath(thiscontent)}}" controls>
+									Your browser does not support the audio element.
+								</audio>
+							</div>
+						</div>
+						<div>
+							<div class="row">
+								<div class="col-md-6">
+									<strong>Times Assigned:</strong> {{thiscontent.times_assigned}}
+								</div>
+								<div class="col-md-6">
+									<strong>Created:</strong> {{thiscontent.created}}
+								</div>
+							</div>
+
+							
+							<div class="row">
+								<div class="col-md-12">
+									<h4>Description:</h4>
+									{{thiscontent.clinician_description}}
+								</div>
+								<div class="col-md-12">
+									<h4>Patients Description:</h4>
+									{{thiscontent.patient_description}}
+									<br /><br />
+								</div>
+							</div>	
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<h3>Similar Content</h3>
+						<hr />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<modal title="Assign Contnet" visible="assignModal">
+		<div assigncontent></div>
+	</modal>
+
+	<modal title="Assign Contnet" visible="assign2Modal">
+		<div assigncontenttwo></div>
+	</modal>
+
+	<modal title="Assign Contnet" visible="assign3Modal">
+		<div assigncontentthree></div>
+	</modal>
+
+</div>

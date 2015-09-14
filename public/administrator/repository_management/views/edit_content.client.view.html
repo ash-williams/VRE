@@ -1,0 +1,40 @@
+<div calss="pad">
+	<div ng-show="error" class="alert alert-danger" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		{{error}}
+	</div>
+
+	<form name="frmeditcontent" data-ng-submit="frmeditcontent.$valid && postEditContent()" class="form-horizontal" novalidate>
+	
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-10">
+				<input type="text" id="name" class="form-control" data-ng-model="thiscontent.name" required />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="category" class="col-sm-2 control-label">Category</label>
+			<div class="col-sm-10">
+				<select id="category" class="form-control" data-ng-model="thiscontent.category" data-ng-options="category.name for category in categories">
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="clin_desc" class="col-sm-2 control-label">Clinician Description</label>
+			<div class="col-sm-10">
+				<textarea id="clin_desc" class="form-control" data-ng-model="thiscontent.clinician_description" required></textarea>
+			</div>
+		</div>	
+		<div class="form-group">
+			<label for="pat_desc" class="col-sm-2 control-label">Patient Description</label>
+			<div class="col-sm-10">
+				<textarea id="pat_desc" class="form-control" data-ng-model="thiscontent.patient_description" required></textarea>
+			</div>
+		</div>	
+		<div>
+			<input type="submit" value="Edit Content" class="btn btn-primary">
+		</div>
+	</form>
+	
+	
+</div>

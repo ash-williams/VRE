@@ -2,8 +2,8 @@
 
 angular
 	.module('clinician')
-	.controller('PatientViewController', ['$scope', '$location', '$routeParams', 'Authentication', 'Accounts', 'Patients', 'Goals',
-		function($scope, $location, $routeParams, Authentication, Accounts, Patients, Goals){
+	.controller('PatientViewController', ['$scope', '$location', '$routeParams', 'Authentication', 'Accounts', 'Patients', 'Goals', 'Treatments', 'Information', 'TreatmentContent',
+		function($scope, $location, $routeParams, Authentication, Accounts, Patients, Goals, Treatments, Information, TreatmentContent){
 			$scope.authentication = Authentication;
 			$scope.name = 'patman';
 			$scope.patId = $routeParams.patId;
@@ -12,12 +12,23 @@ angular
 			
 
 			$scope.addGoalModal = false;
-			$scope.addTreatmentModal = false;
 			$scope.setCompleteModal = false;
 			$scope.viewCompleteModal = false;
 			$scope.editGoalModal = false;
 
+			$scope.addTreatmentModal = false;
+			$scope.viewPreviousTreatmentsModal = false;
+			$scope.viewTreatmentModal = false;
+			$scope.editTreatmentModal = false;
+			$scope.setTreCompleteModal = false;
+
+			$scope.addInformationModal = false;
+			$scope.viewInformationModal = false;
+			$scope.editInformationModal = false;
+
 			$scope.tmpGoal = {};
+			$scope.tmpTreatment = {};
+			$scope.tmpInformation = {};
 
 			$scope.isSelected = function(name){
 				return name === $scope.name;
@@ -66,12 +77,20 @@ angular
 		        $scope.addTreatmentModal = !$scope.addTreatmentModal;
 		    };
 
+		    $scope.toggleAddInformationModal = function(){
+		        $scope.addInformationModal = !$scope.addInformationModal;
+		    };
+
 		    $scope.addGoal = function(){    	
 				$scope.toggleAddGoalModal();
 		    };
 
 		    $scope.addTreatment = function(){    	
 				$scope.toggleAddTreatmentModal();
+		    };
+
+		    $scope.addInformation = function(){    	
+				$scope.toggleAddInformationModal();
 		    };
 
 		    $scope.createGoal = function(){
@@ -198,6 +217,250 @@ angular
 
 			}
 
+			$scope.createTreatment = function(){
+				var treat = $scope.tmpTreatment;
+
+		    	var tre = new Treatments({
+		    		name: treat.name,
+		    		details: treat.details,
+		    		patient: $scope.patId,
+		    		setBy: $scope.authentication._id
+		    	});
+
+		    	tre.$save(function(response){
+		    		//window.location.reload();
+		    		$scope.toggleAddTreatmentModal();
+		    		$scope.success = "Treatment Added Successfully"
+		    	}, function(errorResponse){
+		    		$scope.error = errorResponse.data.message;
+		    	});
+			}
+
+			$scope.patTreatments = function(){
+				$scope.treatmentList = [];
+				
+				var treatments = Treatments.query(function(){
+					for(var i = 0; i < treatments.length; i++){
+						//alert(JSON.stringify(goals[i]));
+						if(treatments[i].patient === $scope.patId){
+							if(!treatments[i].completed){
+						 		//alert(JSON.stringify(clinspats[i].patient));
+						 		$scope.treatmentList.push(treatments[i]);
+						 	}
+						}
+					}
+				});
+				
+			}
+
+			$scope.togglesetTreAsCompleteModal = function(){
+		        $scope.setTreCompleteModal = !$scope.setTreCompleteModal;
+		    }
+
+		    $scope.setTreAsComplete = function(id){    
+		    	$scope.tmpTreatId = id;	
+				$scope.togglesetTreAsCompleteModal();
+		    }
+
+		    $scope.toggleeditTreatmentModal = function(){
+		        $scope.editTreatmentModal = !$scope.editTreatmentModal;
+		    }
+
+		    $scope.editTreatment = function(id){ 
+		   		$scope.tmpTreatId = id;
+				$scope.treatment = Treatments.get({
+					treatmentId: $scope.tmpTreatId
+				}, function(){
+					$scope.toggleeditTreatmentModal();
+				});	   	
+		    }
+
+
+		    $scope.toggleviewTreatmentModal = function(){
+		        $scope.viewTreatmentModal = !$scope.viewTreatmentModal;
+		    }
+
+		    $scope.viewTreatment = function(id){ 
+		    	$scope.tmpTreatId = id; 
+		    	$scope.treatment = Treatments.get({
+					treatmentId: $scope.tmpTreatId
+				}, function(){
+					$scope.getContentList();//function(){
+						//alert("hit");
+						$scope.toggleviewTreatmentModal();
+					//});
+				});	   	  	
+		    }
+
+		    $scope.getContentList = function(){
+		    	$scope.contentList = [];
+
+		    	var tcs = TreatmentContent.query(function(){
+		    		for(var i = 0; i < tcs.length; i++){
+		    			//alert(tcs[i].treatment + "\n" + $scope.treatment._id);
+		    			if(tcs[i].treatment === $scope.treatment._id){
+		    				$scope.contentList.push(tcs[i]);
+		    			}
+		    		}
+		    	});
+		    }
+
+		    $scope.toggleviewPreviousTreatmentsModal = function(){
+		        $scope.viewPreviousTreatmentsModal = !$scope.viewPreviousTreatmentsModal;
+		    }
+
+		    $scope.viewPreviousTreatments = function(id){    	
+				$scope.toggleviewPreviousTreatmentsModal();
+		    }
+
+		    $scope.completeTreatment = function(){
+				//alert($scope.tmpGoalId);
+				$scope.treatment = Treatments.get({
+					treatmentId: $scope.tmpTreatId
+				}, function(){
+					var tre = new Treatments({
+						completed: true
+					});
+					Treatments.update({treatmentId:$scope.tmpTreatId}, tre, function(){
+						//alert("update ok");
+						$scope.success = "Treatment set as complete";
+						$scope.togglesetTreAsCompleteModal();
+					}, function(errorResponse){
+						$scope.error = errorResponse.data.message;
+					});
+				});
+			}
+
+			$scope.getOldTreatments = function(){
+				$scope.completedTreatments = [];
+				
+				var treatments = Treatments.query(function(){
+					for(var i = 0; i < treatments.length; i++){
+						//alert(JSON.stringify(goals[i]));
+						if(treatments[i].patient === $scope.patId){
+							if(treatments[i].completed){
+						 		//alert(JSON.stringify(clinspats[i].patient));
+						 		$scope.completedTreatments.push(treatments[i]);
+						 	}
+						}
+					}
+				});
+				
+			}
+
+			$scope.updateTreatment = function(){
+				var tre = new Treatments({
+					name: $scope.treatment.name,
+					details: $scope.treatment.details
+				});
+				Treatments.update({treatmentId:$scope.tmpTreatId}, tre, function(){
+					//alert("update ok");
+					$scope.success = "Treatment updated";
+					$scope.toggleeditTreatmentModal();
+				}, function(errorResponse){
+					$scope.error = errorResponse.data.message;
+				});
+			}
+
+			$scope.deleteTreatment = function(id){
+				Treatments.delete({treatmentId: id}, function(){
+					$scope.success = "Treatment Deleted";
+					window.location.reload();
+				})
+
+			}
+
+			//Information
+
+			$scope.createInformation = function(){
+				var info = $scope.tmpInformation;
+
+		    	var inf = new Information({
+		    		name: info.name,
+		    		details: info.details,
+		    		patient: $scope.patId,
+		    		setBy: $scope.authentication._id
+		    	});
+
+		    	inf.$save(function(response){
+		    		//window.location.reload();
+		    		$scope.toggleAddInformationModal();
+		    		$scope.success = "Information Added Successfully"
+		    	}, function(errorResponse){
+		    		$scope.error = errorResponse.data.message;
+		    	});
+			}
+
+			$scope.patInformation = function(){
+				$scope.informationList = [];
+				
+				var information = Information.query(function(){
+					for(var i = 0; i < information.length; i++){
+						//alert(JSON.stringify(goals[i]));
+						if(information[i].patient === $scope.patId){
+							
+						 		//alert(JSON.stringify(clinspats[i].patient));
+						 	$scope.informationList.push(information[i]);
+						 	
+						}
+					}
+				});
+				
+			}
+
+		    $scope.toggleeditInformationModal = function(){
+		        $scope.editInformationModal = !$scope.editInformationModal;
+		    }
+
+		    $scope.editInformation = function(id){ 
+		   		$scope.tmpInfoId = id;
+				$scope.information = Information.get({
+					informationId: $scope.tmpInfoId
+				}, function(){
+					$scope.toggleeditInformationModal();
+				});	   	
+		    }
+
+
+		    $scope.toggleviewInformationModal = function(){
+		        $scope.viewInformationModal = !$scope.viewInformationModal;
+		    }
+
+		    $scope.viewInformation = function(id){ 
+		    	$scope.tmpInfoId = id; 
+		    	$scope.information = Information.get({
+					informationId: $scope.tmpInfoId
+				}, function(){
+					$scope.toggleviewInformationModal();
+				});	   	  	
+		    }
+
+			$scope.updateInformation = function(){
+				var inf = new Information({
+					name: $scope.information.name,
+					details: $scope.information.details
+				});
+				Information.update({informationId:$scope.tmpInfoId}, inf, function(){
+					//alert("update ok");
+					$scope.success = "Information updated";
+					$scope.toggleeditInformationModal();
+				}, function(errorResponse){
+					$scope.error = errorResponse.data.message;
+				});
+			}
+
+			$scope.deleteInformation = function(id){
+				Information.delete({informationId: id}, function(){
+					$scope.success = "Information Deleted";
+					window.location.reload();
+				});
+			}
+
+			$scope.privateModal = false;
+
+			$scope.uploadPrivate = function(){
+				$scope.privateModal = !$scope.privateModal;
+			}
 
 		}
 	]);

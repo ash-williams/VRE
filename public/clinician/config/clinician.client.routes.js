@@ -10,6 +10,14 @@ angular.module('clinician').config(['$routeProvider', function($routeProvider){
 		templateUrl: 'clinician/views/repository/default-rep.client.view.html',
 		controller: 'ClinicianRepositoryController'
 	})
+	.when('/Clinician/Repository/Category/:catId',{
+		templateUrl: 'clinician/views/repository/category.client.view.html',
+		controller: 'ViewCategoryController'
+	})
+	.when('/Clinician/Repository/Content/:conId',{
+		templateUrl: 'clinician/views/repository/content.client.view.html',
+		controller: 'ViewContentController'
+	})
 	.when('/Clinician/Profile',{
 		templateUrl: 'clinician/views/clinProfile/default-clinProfile.client.view.html',
 		controller: 'ClinicianProfileController'

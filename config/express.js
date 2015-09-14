@@ -6,6 +6,7 @@ var config = require('./config'),
 	methodOverride = require('method-override'),
 	session = require('express-session'),
 	passport = require('passport'),
+	multiparty = require('connect-multiparty'),
 	flash = require('connect-flash');
 
 module.exports = function(){
@@ -22,6 +23,7 @@ module.exports = function(){
 	}));
 	app.use(bodyParser.json());
 	app.use(methodOverride());
+	app.use(multiparty());
 
 	//console.log(config.sessionSecret);
 	
@@ -45,8 +47,11 @@ module.exports = function(){
 	require('../app/routes/clinicianspatients.server.routes.js')(app);
 	require('../app/routes/patients.server.routes.js')(app);
 	require('../app/routes/categories.server.routes.js')(app);
-	require('../app/routes/content.server.routes.js')(app);
+	require('../app/routes/repository.server.routes.js')(app);
 	require('../app/routes/goals.server.routes.js')(app);
+	require('../app/routes/treatments.server.routes.js')(app);
+	require('../app/routes/information.server.routes.js')(app);
+	require('../app/routes/treatmentcontent.server.routes.js')(app);
 
 	app.use(express.static('./public'));
 

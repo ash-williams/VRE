@@ -27,7 +27,7 @@ exports.create = function(req, res){
 };
 
 exports.list = function(req, res){
-	CliniciansPatients.find({clinician: req.user._id})
+	CliniciansPatients.find()
 	.populate('clinician')
 	.populate('patient')
 	.exec(function(err, clinpat){

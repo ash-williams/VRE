@@ -1,0 +1,64 @@
+<div>
+	<clinnav></clinnav>
+
+	<div class="container body-content panel panel-default" ng-init="getCategory(catId)">
+		<div>
+			<div class="top_bar">
+				<div class="col-md-5 title">
+					<h1>{{category.name}}</h1>
+				</div>
+				<div class="col-md-7 title_right">
+					
+				</div>
+			</div>
+			<div class="main_content">
+				<div class="row">
+					<div class="col-sm-1">
+						<button class="btn btn-primary" ng-click="backButton()">
+							<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+							Back
+						</button>
+					</div>
+					<div class="col-sm-7">
+						<div class="input-group">
+								<input type="text" tabindex="0" class="form-control" id="search-bar" ng-model="searchBar" placeholder="Search for content">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">
+										<span class="glyphicon glyphicon-search" id="search"></span>
+									</button>
+								</span>
+							</div><!-- /input-group -->
+					</div>
+				</div>
+				<div ng-show="!searchBar.length">
+					<div ng-repeat="cat in categories | filter:{parentCategory: {_id: category._id}}" class="col-md-2 center space_top">
+						<a href="/#!/Clinician/Repository/Category/{{cat._id}}">
+							<img src="/images/folder-icon.png" class="img-thumbnail" alt="{{cat.name}}" />
+							<span class="move-up">{{cat.name}}</span>
+						</a>
+					</div>
+					<div ng-repeat="con in allcontent | filter:{category: category._id}">
+						<div class="col-md-2 center space_top">
+								<a href="/#!/Clinician/Repository/Content/{{con._id}}">
+									<div class="outer-thumbnail">
+										<img ng-show="isType(con, 'image')" ng-src="{{getFullPath(con)}}"  class="img-thumbnail" alt="{{con.name}}" />
+
+										<video ng-show="isType(con, 'video')" class="img-thumbnail big_space_top" ng-src="{{getFullPath(con)}}">
+											{{con.name}}
+										</video>
+
+										<img ng-show="!isType(con, 'image') && !isType(con, 'video')" ng-src="/images/{{getType(con)}}-icon.png" class="img-thumbnail move-up" alt="con.name" />
+									</div>
+									<br /><br />
+									<span class="big_space_top">{{con.name}}</span>
+								</a>
+							</div>
+					</div>
+				</div>
+				<div ng-show="searchBar.length">
+					<h3>Search Results</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

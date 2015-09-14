@@ -1,0 +1,14 @@
+<div class=""  data-ng-init="getOldTreatments()">
+	<div class="pad">
+		<table class="table table-striped table-hover" id="table">
+			<tr>
+				<th>Name</th>
+				<th>Set On</th>
+			</tr>
+			<tr ng-repeat="tre in completedTreatments track by $index">
+				<td>{{tre.name}}</td>
+				<td>{{tre.created}}</td>
+			</tr>
+		</table>	
+	</div>
+</div>

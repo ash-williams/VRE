@@ -1,0 +1,28 @@
+<div>
+	<div ng-show="error" class="alert alert-danger" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		{{error}}
+	</div>
+	
+	<form name="frmaddinformation" data-ng-submit="frmaddinformation.$valid && createInformation()" class="form-horizontal" novalidate>
+	
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-10">
+				<input type="text" id="name" class="form-control" data-ng-model="tmpInformation.name" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="desc" class="col-sm-2 control-label">Details</label>
+			<div class="col-sm-10">
+				<textarea id="desc" class="form-control" data-ng-model="tmpInformation.details" required></textarea>
+			</div>
+		</div>
+
+		<div>
+			<input type="submit" value="Create Information" class="btn btn-primary">
+		</div>
+	</form>
+	
+	
+</div>

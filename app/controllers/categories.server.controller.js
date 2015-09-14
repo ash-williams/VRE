@@ -62,7 +62,9 @@ exports.update = function(req, res){
 	//console.log(account);
 	Category.findByIdAndUpdate(req.category.id, cat, function(err, cat){
 		if(err){
-			return next(err);
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
 		}else{
 			res.json(cat);
 		}

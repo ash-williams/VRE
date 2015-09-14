@@ -60,5 +60,65 @@ angular.module('clinician')
 			restrict: 'A',
 			templateUrl: '/clinician/views/patientManagement/patient/treatments/add-treatment.client.view.html'
 		}
+	})
+	.directive('viewtreatment', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/clinician/views/patientManagement/patient/treatments/view-treatment.client.view.html'
+		}
+	})
+	.directive('edittreatment', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/clinician/views/patientManagement/patient/treatments/edit-treatment.client.view.html'
+		}
+	})
+	.directive('viewprevioustreatment', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/clinician/views/patientManagement/patient/treatments/view-previous-treatment.client.view.html'
+		}
+	})
+	.directive('completetreatment', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/clinician/views/patientManagement/patient/treatments/complete-treatment.client.view.html'
+		}
+	})
+	.directive('addinformation', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/clinician/views/patientManagement/patient/information/add-information.client.view.html'
+		}
+	})
+	.directive('viewinformation', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/clinician/views/patientManagement/patient/information/view-information.client.view.html'
+		}
+	})
+	.directive('editinformation', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/clinician/views/patientManagement/patient/information/edit-information.client.view.html'
+		}
+	})
+	.directive('assigncontent', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/clinician/views/repository/assign-content.client.view.html'
+		}
+	})
+	.directive('assigncontenttwo', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/clinician/views/repository/assign-content2.client.view.html'
+		}
+	})
+	.directive('assigncontentthree', function(){
+		return {
+			restrict: 'A',
+			templateUrl: '/clinician/views/repository/assign-content3.client.view.html'
+		}
 	});
 

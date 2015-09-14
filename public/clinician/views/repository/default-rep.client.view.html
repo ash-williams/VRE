@@ -12,7 +12,85 @@
 				</div>
 			</div>
 			<div class="main_content">
-				{{name}}
+				<div class="row">
+					<div id="left-search" class="col-lg-6">
+						<div id="content-search" class="space_top">
+							<div class="input-group">
+								<input type="text" tabindex="0" class="form-control" id="search-bar" ng-model="searchBar" placeholder="Search for content">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">
+										<span class="glyphicon glyphicon-search" id="search"></span>
+									</button>
+								</span>
+							</div><!-- /input-group -->
+						</div>
+						<div class="space_top" id="content-list">
+							<hr />
+							<div ng-show="!searchBar.length" class="content-list">
+								<h3 >Most Popular</h3>
+								<div ng-repeat="content in allcontent | orderBy: '-times_assigned' | limitTo: 4">
+									<div class="row">
+										<div class="col-md-3">
+											<div class="outer-thumbnail">
+												<img ng-show="isType(content, 'image')" ng-src="{{getFullPath(content)}}"  class="img-thumbnail" alt="{{content.name}}" />
+
+												<!-- <img ng-show="isType(content, 'video')" class="img-thumbnail big_space_top" ng-src="{{getThumbPath(content)}}" alt="{{content.name}}" />
+ -->
+ 												<video ng-show="isType(content, 'video')" class="img-thumbnail big_space_top" ng-src="{{getFullPath(content)}}">
+													{{content.name}}
+												</video>
+
+
+												<img ng-show="!isType(content, 'image') && !isType(content, 'video')" ng-src="/images/{{getType(content)}}-icon.png" class="img-thumbnail move-up" alt="content.name" />
+											</div>
+										</div>
+										<div class="col-md-9">
+											<a href="/#!/Clinician/Repository/Content/{{content._id}}"><h4>{{content.name}}</h4></a>
+											<p>{{content.clinician_description}}</p>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<div ng-show="searchBar.length">
+								<h3>Search Results</h3>
+							</div>
+						</div>
+					</div>
+					<div id="right-browse" class="col-lg-6">
+						<h3>Browse Repository</h3>
+						<div class="row">
+							<div ng-repeat="cat in categories | filter:{parentCategory: {name: 'Master'}}">
+								<div class="col-md-3 center space_top">
+									<a href="/#!/Clinician/Repository/Category/{{cat._id}}">
+										<img src="/images/folder-icon.png" class="img-thumbnail" alt="{{cat.name}}" />
+										<span class="move-up">{{cat.name}}</span>
+									</a>
+								</div>
+							</div>
+							
+							<div ng-repeat="con in allcontent | filter:{category: '558c3049b3ed0904298feefb'}">
+								
+								<div class="col-md-3 center space_top">
+									<a href="/#!/Clinician/Repository/Content/{{con._id}}">
+										<div class="outer-thumbnail">
+											<img ng-show="isType(con, 'image')" ng-src="{{getFullPath(con)}}"  class="img-thumbnail" alt="{{con.name}}" />
+
+											<video ng-show="isType(con, 'video')" class="img-thumbnail big_space_top" ng-src="{{getFullPath(con)}}">
+												{{con.name}}
+											</video>
+
+											<img ng-show="!isType(con, 'image') && !isType(con, 'video')" ng-src="/images/{{getType(con)}}-icon.png" class="img-thumbnail move-up" alt="con.name" />
+										</div>
+
+										<span>{{con.name}}</span>
+									</a>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

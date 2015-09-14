@@ -1,0 +1,17 @@
+<div>
+	<table class="table table-striped table-hover" id="table">
+		<tr>
+			<th>Name</th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="tre in treatmentList track by $index">
+			<td>{{tre.name}}</td>
+			<td>
+				<button class="btn btn-link" ng-click="assign2(tre._id)">
+					Assign
+				</button>
+			</td>
+		</tr>
+	</table>
+
+</div>

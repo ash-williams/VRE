@@ -3,7 +3,13 @@
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 		{{error}}
 	</div>
+
+	<div ng-show="success" class="alert alert-success" role="alert">
+		{{success}}
+	</div>
+
 	
+
 	<form name="frmaddcontent" data-ng-submit="frmaddcontent.$valid && createContent()" class="form-horizontal" novalidate>
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Name</label>
@@ -26,18 +32,25 @@
 		<div class="form-group">
 			<label for="file" class="col-sm-2 control-label">File</label>
 			<div class="col-sm-10">
-				<input type="file" id="file" class="form-control" data-ng-file-select="onFileSelect($file)" required>
+				<div class="btn btn-primary"  ngf-select ng-model="file" ngf-multiple="false">
+					Select File
+				</div>
 			</div>
 		</div>
+
+	<!-- 	<div>
+		    Upload Log:
+		    <pre>{{log}}</pre>
+		</div> -->
 		
-		
-		<div>
+		<!-- <div>
 			<input type="submit" value="Create Content" class="btn btn-primary">
-		</div>
+		</div> -->
 	</form>
 	
 	
 </div>
+
 
 
 <!-- 	type: {

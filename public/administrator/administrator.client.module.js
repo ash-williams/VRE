@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('administrator', ['adminProfile','accountManagement','repositoryManagement']);
+angular.module('administrator', ['adminProfile','accountManagement','repositoryManagement', 'ngFileUpload']);

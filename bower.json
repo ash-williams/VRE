@@ -1,9 +1,12 @@
 {
-	"name": "vre",
-	"version": "0.0.1",
-	"dependencies": {
-		"angular": "~1.2",
-		"angular-route": "~1.2",
-		"angular-resource": "~1.2"
-	}
+  "name": "vre",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.2",
+    "angular-route": "~1.2",
+    "angular-resource": "~1.2"
+  },
+  "resolutions": {
+    "ng-file-upload": "~5.0.9"
+  }
 }

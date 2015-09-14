@@ -7,6 +7,8 @@ angular
 			this.authentication = Authentication;
 			this.account = {};
 			//$scope.error = "HELLO";
+			$scope.assignClin = "";
+			$scope.assignPat = "";
 
 			this.create = function(){
 				
@@ -94,6 +96,9 @@ angular
 			$scope.showModal = false;
 			$scope.editModal = false;
 			$scope.viewPatModal = false;
+			$scope.viewClinModal = false;
+			$scope.assignClinModal = false;
+			$scope.assignPatModal = false;
 
 		    $scope.toggleModal = function(){
 		        $scope.showModal = !$scope.showModal;
@@ -104,9 +109,28 @@ angular
 		    };
 
 		    $scope.toggleViewPatients = function(id){
+		    	$scope.assignClin = id;
 		    	$scope.getClinsPatients(id);
 		        $scope.viewPatModal = !$scope.viewPatModal;
 		    };
+
+		    $scope.toggleViewClinicians = function(id){
+		    	$scope.assignPat = id;
+		    	$scope.getPatsClinicians(id);
+		        $scope.viewClinModal = !$scope.viewClinModal;
+		    };
+
+		    $scope.toggleAssignClinPat = function(){
+		    	if($scope.viewPatModal){
+		    		$scope.viewPatModal = false;
+		    		$scope.assignClinModal = true;
+		    	}
+
+		    	if($scope.viewClinModal){
+		    		$scope.viewClinModal = false;
+		    		$scope.assignPatModal = true;
+		    	}	
+		    }
 
 		    $scope.viewAccount = function(id){
 		    	//alert(id);
@@ -190,8 +214,83 @@ angular
 				window.location.reload();
 			};
 
+			
+
 			$scope.getClinsPatients = function(id){
-				alert(id);
+				//alert(id);
+				$scope.clinpatsList = [];
+				$scope.clinpats = CliniciansPatients.query(function(){
+					//alert($scope.clinpats);
+					for(var i = 0; i < $scope.clinpats.length; i++){
+						//alert(JSON.stringify($scope.clinpats[i]));
+						if($scope.clinpats[i].clinician._id === id){
+							$scope.clinpatsList.push($scope.clinpats[i]);
+						}
+					}
+					//alert(JSON.stringify($scope.clinpatsList));
+				});
+			}
+
+			$scope.getPatsClinicians = function(id){
+				//alert(id);
+				$scope.patclinsList = [];
+				$scope.patsClins = CliniciansPatients.query(function(){
+					//alert($scope.clinpats);
+					for(var i = 0; i < $scope.patsClins.length; i++){
+						//alert(JSON.stringify($scope.clinpats[i]));
+						if($scope.patsClins[i].patient._id === id){
+							$scope.patclinsList.push($scope.patsClins[i]);
+						}
+					}
+					//alert(JSON.stringify($scope.patclinsList));
+				});
+			}
+
+			$scope.unassignClinPat = function(clinid, patid){
+				var clinpats = CliniciansPatients.query(function(){
+					//alert("hit");
+					for(var i = 0; i < clinpats.length; i++){
+						//alert(i)
+						if(clinpats[i].clinician._id === clinid && clinpats[i].patient._id === patid){
+							CliniciansPatients.delete({clinpatId:clinpats[i]._id}, function(){
+								alert('Unassigned');
+							});
+						}
+					}
+				});
+			}
+
+			$scope.getClinsAndPats = function(){
+				$scope.allClinicians = Clinicians.query();
+				$scope.allPatients = Patients.query();
+			}
+
+			$scope.assignPatToClin = function(id){
+				//alert("Clin: " + id + "\nPat: " + $scope.assignPat);
+				$scope.addCliniciansPatients(id, $scope.assignPat);
+			}
+
+			$scope.assignClinToPat = function(id){
+				//alert("Pat: " + id + "\nClin: " + $scope.assignClin);
+				$scope.addCliniciansPatients($scope.assignClin, id);
+			}
+
+			$scope.addCliniciansPatients = function(clinid, patid){
+				alert("Pat: " + patid + "\nClin: " + clinid);
+
+				var clinpat = new CliniciansPatients({
+				        	patient: patid,
+				        	clinician: clinid
+				        });
+
+		        clinpat.$save(function(response){
+		        	//alert("Added successfully");
+		        	$scope.success = "Assign Successful";
+		        	//$location.path('/Clinician/patient/patId');
+		        	
+		        }, function(errorResponse){
+		        	$scope.error = errorResponse.data.message;
+		        });
 			}
 
 		

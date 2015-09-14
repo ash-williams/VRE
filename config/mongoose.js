@@ -12,6 +12,9 @@ module.exports = function(){
 	require('../app/models/category.server.model');
 	require('../app/models/content.server.model');
 	require('../app/models/goal.server.model');
+	require('../app/models/treatment.server.model');
+	require('../app/models/information.server.model');
+	require('../app/models/treatmentcontent.server.model');
 
 
 	return db;

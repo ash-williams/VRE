@@ -3,7 +3,7 @@
 
 	<div class="container body-content panel panel-default">
 
-		<section data-ng-controller="RepositoryController">
+		<section data-ng-controller="RepositoryController" ng-init="initCatView()">
 			<div>
 				<div class="top_bar">
 					<div class="col-md-5 title">
@@ -18,8 +18,13 @@
 						</button>
 					</div>
 				</div>
+
 				<div class="main_content">
 					<div class="space_top">
+						<div ng-show="error" class="alert alert-danger">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							{{error}}
+						</div>
 						<div class="">
 							<div class="col-sm-2 center" data-ng-repeat="cat in categories | filter:{parentCategory: {name: 'Master'}}" ng-show="isSelected('558c3049b3ed0904298feefb')">
 								<a href="" ng-click="selectView(cat._id)">
@@ -39,7 +44,7 @@
 										<button type="button" class="btn btn-link" data-ng-click="editCategory()">
 											Edit Category
 										</button>
-										<button type="button" class="btn btn-link" data-ng-click="deleteCategory()">
+										<button type="button" class="btn btn-link" data-ng-click="deleteCategory(cat._id)">
 											Delete Category
 										</button>
 									</div>
@@ -52,18 +57,16 @@
 											<h4>{{subcat.name}}</h4>
 										</a>
 									</div>
-
-									<!-- content -->
-									<div class="col-sm-2 center" data-ng-repeat="item in allContent | filter:{category: item.category_id}">
-										<a href="" ng-click="">
-											<h4>{{item.name}}</h4>
-										</a>
-									</div>
-
-
-
 								<!--{{cat.name}} Content-->
 								</div>
+							</div>
+							<!-- content -->
+							<div class="col-sm-2 center" data-ng-repeat="item in allContent | filter:{category: catView}">
+								<a href="" ng-click="viewContent(item._id)">
+									<img src="/images/{{item.type | split:'/':0}}-icon.png" class="img-thumbnail" alt="{{item.type | split:'/':0}}" />
+									<br />
+									<h4>{{item.name}}</h4>
+								</a>
 							</div>
 						</div>
 					</div>	

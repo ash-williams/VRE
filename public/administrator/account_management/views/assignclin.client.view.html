@@ -1,0 +1,35 @@
+<div ng-init="getClinsAndPats()">
+	<div>
+		<div>
+			<h4>Clinicians</h4>
+
+			<div ng-show="success" class="alert alert-success" role="alert">
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				{{success}}
+			</div>
+
+		    <input type="text" class="form-control" placeholder="Search for..." />
+			<table class="table" id="assign-table">
+					<tr>
+						<th>Title</th>
+						<th>Full Name</th>
+						<th>Specialty</th>
+						<th>Email</th>
+						<th></th>
+
+					</tr>
+					<tr ng-repeat="clin in allClinicians">
+						<td ng-bind="clin.account.title"></td>
+						<td ng-bind="clin.account.fullName"></td>
+						<td ng-bind="clin.specialty"></td>
+						<td ng-bind="clin.account.email"></td>
+						<td>
+							<button class="btn btn-primary" ng-click="assignPatToClin(clin.account._id)">
+								Assign
+							</button>
+						</td>
+					</tr>
+			</table>
+		</div>
+	</div>
+</div>

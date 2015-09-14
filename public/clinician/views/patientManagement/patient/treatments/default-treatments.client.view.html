@@ -1,19 +1,66 @@
-<div class="container">
+<div class="" data-ng-init="patTreatments()">
 	<div class="top_bar">
-				<div class="col-md-5 title">
-					<h1>Treatments</h1>
-				</div>
-				<div class="col-md-7 title_right">
-					<button type="button" class="btn btn-primary" data-ng-click="addTreatment()">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Treatment
+		<div class="col-md-5 title">
+			<h1>Treatments</h1>
+		</div>
+		<div class="col-md-7 title_right">
+			<button type="button" class="btn btn-primary" data-ng-click="addTreatment()">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Treatment
+			</button>
+			<button type="button" class="btn btn-link" data-ng-click="viewPreviousTreatments()">
+				View Previous Treatments
+			</button>
+		</div>
+	</div>
+	<div class="pad">
+		<table class="table table-striped table-hover" id="table">
+			<tr>
+				<th>Name</th>
+				<th>Set On</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="tre in treatmentList track by $index">
+				<td>{{tre.name}}</td>
+				<td>{{tre.created}}</td>
+				<td>
+					<button class="btn btn-link" ng-click="viewTreatment(tre._id)">
+						View
 					</button>
-				</div>
-			</div>
-			<div class="main_content">
-				Treatments
-			</div>
+				</td>
+				<td>
+					<div class="btn-group">
+						<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Action <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="" ng-click="setTreAsComplete(tre._id)">Set As Complete</a></li>
+							<li><a href="" ng-click="editTreatment(tre._id)">Edit</a></li>
+							<li><a href="" ng-click="deleteTreatment(tre._id)">Delete</a></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>	
+	</div>
 </div>
 
 <modal title="Add Treatment" visible="addTreatmentModal">
 	<div addtreatment></div>
+</modal>
+
+<modal title="Previous Treatments" visible="viewPreviousTreatmentsModal">
+	<div viewprevioustreatment></div>
+</modal>
+
+<modal title="View Treatment" visible="viewTreatmentModal">
+	<div viewtreatment></div>
+</modal>
+
+<modal title="Edit Treatment" visible="editTreatmentModal">
+	<div edittreatment></div>
+</modal>
+
+<modal title="Complete Treatment" visible="setTreCompleteModal">
+	<div completetreatment></div>
 </modal>
